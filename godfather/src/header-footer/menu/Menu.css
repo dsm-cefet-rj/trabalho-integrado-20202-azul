@@ -1,0 +1,38 @@
+#menu {
+    background-color: var(--light-crimson);
+    border: 2px var(--king-crimson) solid;
+    border-radius: 0.15rem;
+
+    width: 80%;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5rem;
+    padding: 0.2rem 2.5rem;
+}
+
+#menu a {
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: var(--brown);
+    opacity: 0.9;
+}
+
+#menu a:hover {
+    text-decoration: underline;
+    opacity: 1;
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    #menu {
+        width: 98%;
+        padding: 0 1rem;
+    }
+}
+
+@media (min-width: 1000px) {
+    #menu a{
+        font-size: 1.5rem;
+    }
+}

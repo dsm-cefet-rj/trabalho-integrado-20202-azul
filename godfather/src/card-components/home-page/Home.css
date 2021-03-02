@@ -1,0 +1,16 @@
+.card-title, .card-content {
+    font-family: 'Castoro', serif;
+}
+
+.card-title, .display-6 {
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.card-content {
+    font-size: 1.2rem;
+    max-width: fit-content;
+    text-align: justify;
+    margin: auto;
+}
