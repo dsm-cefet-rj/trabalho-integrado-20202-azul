@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Logo from './header-footer/logo/logo';
 import Menu from './header-footer/menu/menu';
-import Home from './card-components/home-page/home';
+// import Home from './card-components/home-page/home';
 import Footer from './header-footer/footer/footer';
 import reportWebVitals from './reportWebVitals';
+
+// Temporary
+import Duels from './card-components/duels/duels';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,7 +26,7 @@ ReactDOM.render(
 
 ReactDOM.render(
   <React.StrictMode>
-  <Home />
+  <Duels />
   </React.StrictMode>,
   document.getElementById('card')
 );

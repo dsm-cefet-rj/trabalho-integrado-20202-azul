@@ -1,0 +1,56 @@
+#wanted-poster {
+    border: 1px solid var(--suit-black);
+    padding: 1rem;
+    background-color: var(--light-crimson);
+ 
+    max-width: 1000px;
+ }
+ 
+ #wanted-title {
+     font-family: 'DM Serif Text', 'Castoro', serif;
+     font-size: 3.5rem;
+     text-align: center;
+     font-weight: bold;
+ }
+ 
+ #wanted-subtitle {
+     text-align: center;
+     font-size: 2rem;
+ }
+ 
+ .character-name {
+     text-align: center;
+     font-weight: bold;
+     font-size: 1.5rem;
+ }
+ 
+ #character-img {
+     border: 1px solid var(--light-brown);
+ }
+ 
+ #status-row {
+     margin: 1rem 0;
+     border: 1px solid var(--brown);
+ }
+ 
+ #status-row .col {
+     border: 1px solid var(--brown);
+     background-color: var(--light-brown);
+ 
+     color: var(--light-gray);
+ }
+
+ /* Button */
+ #button-box {
+     margin-top: 1rem;
+ }
+ 
+ .buttons-row #queue-button {
+     background-color: var(--dark-green);
+     color: var(--light-gray);
+ }
+ 
+ .buttons-row #queue-button:hover {
+     background-color: var(--brown);
+     color: var(--light-gray);
+ }
