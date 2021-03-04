@@ -2,10 +2,15 @@ import React from 'react';
 import './App.css';
 import Logo from '../header-footer/logo/logo';
 import Menu from '../header-footer/menu/menu';
-import Home from '../card-components/home-page/home';
 import Footer from '../header-footer/footer/footer';
 
+// Cards
+// import Home from '../card-components/home-page/home';
+// import Duels from '../card-components/duels/duels';
+import Missions from '../card-components/missions/missions'
+
 class App extends React.Component {
+
     // eslint-disable-next-line
     constructor (props) {
         super(props);
@@ -14,7 +19,7 @@ class App extends React.Component {
     render() {
         return(
             <>
-                {/* Titulo / Logo */}
+                {/* Logo / Menu*/}
                 <header>
                     <section id="logo">
                         <Logo />
@@ -27,7 +32,8 @@ class App extends React.Component {
                 {/* Card */}
                 <main>
                     <section id="card">
-                        <Home />
+                        {/* Your card component goes here */}
+                        <Missions />
                     </section>
                 </main>
 
