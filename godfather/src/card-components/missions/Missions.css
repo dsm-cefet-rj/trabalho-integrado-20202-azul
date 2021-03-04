@@ -1,0 +1,53 @@
+/* mission inbox */
+#missions-inbox ul button {
+    background-color: var(--pastel);
+    border: 1px solid var(--light-brown);
+
+    font-weight: bold;
+}
+
+#missions-inbox ul button:nth-child(2) {
+    border-top: none;
+    border-bottom: none;
+}
+
+
+/* Active mission box */
+.active-mission-box {
+    /* margin: 0.5rem; */
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--pastel);
+}
+
+/* Active mission buttons */
+#ac-buttons button {
+    margin: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+#ac-buttons #cancel-button {
+    background-color: var(--king-crimson);
+    border-color: var(--king-crimson);
+}
+#ac-buttons #cancel-button:hover {
+    background-color: var(--dark-crimson);
+    border-color: var(--dark-crimson);
+}
+
+#ac-buttons #complete-now-button {
+    background-color: var(--dark-green);
+    color: var(--golden-wind);
+}
+#ac-buttons #complete-now-button:hover {
+    background-color: var(--brown);
+    color: var(--golden-wind);
+}
+
+/* Modal */
+.modal-content {
+    background-color: var(--light-gray);
+    color: var(--brown);
+    
+    text-align: justify;
+}

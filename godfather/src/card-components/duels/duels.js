@@ -1,5 +1,4 @@
 import './Duels.css';
-import testPlayerImage from './mafia-luffy.jpg';
 
 function Duels(props) {
     return (
@@ -13,7 +12,7 @@ function Duels(props) {
                     <h3 id="wanted-title">WANTED</h3>
                     <h4 id="wanted-subtitle">Dead or Alive</h4>
                     <p className="character-name">Don Luffino</p>
-                    <img id="character-img" src={testPlayerImage} alt="Your character" className="img-fluid"></img>
+                    <img id="character-img" src={process.env.PUBLIC_URL + '/images/test/cards/duels/mafia-luffy.jpg'} alt="Your character" className="img-fluid" />
 
                     <div id="status-row" className="row">
                         <div className="col">
