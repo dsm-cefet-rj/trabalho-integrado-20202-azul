@@ -1,7 +1,7 @@
 import './Gold-shop.css';
-import testPlayerImage from './1200g.jpg';
-import testPlayerImage from './575g.jpg';
-import testPlayerImage from './275g.jpg';
+import testPlayerImage from './1200g-300px.jpg';
+import testPlayerImage from './575g-300px.jpg';
+import testPlayerImage from './275g-300px.jpg';
 
 function Goldr(props) {
 	return (
