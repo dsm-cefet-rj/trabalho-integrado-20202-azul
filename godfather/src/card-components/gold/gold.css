@@ -1,0 +1,100 @@
+/* images */
+.description img{
+    max-width: 100%;
+    border: 1px solid var(--brown);
+}
+
+/* table */
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+th {
+    font-weight: bold;
+    font-size: 1.15rem;
+}
+
+td{
+    border: 1px solid var(--suit-black);
+}
+
+.bonus {
+    font-family: 'DM Serif Text', 'Castoro', serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--king-crimson);
+}
+
+/* Collumn buy-link */
+
+ .to-buy {
+    padding: 1rem;
+}
+
+.to-buy a {
+    background-color: var(--king-crimson);
+    border-color: var(--king-crimson);
+    color: var(--golden-wind);
+}
+
+.to-buy a:hover {
+    background-color: var(--dark-crimson);
+    border-color: var(--dark-crimson);
+    color: var(--golden-wind);
+}
+
+i {
+    padding-left: 0.5rem;
+}
+/*
+ .buy-button {
+    background-color: var(--king-crimson);
+    border-radius: 0.25rem;
+    padding: 0 3rem;
+    margin: auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.buy-button p {
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    text-align: center;
+    color: var(--golden-wind);
+} */
+
+@media (max-width: 600px) {
+    .to-buy{
+        display: none;
+    }
+
+    table {
+        border-collapse: separate;
+        border-spacing: 0 2rem;
+    }
+
+    thead tr th {
+        padding: 0;
+    }
+
+    tbody tr {
+        background-color: var(--golden-wind);
+    }
+
+    .value {
+        border-left: 0;
+        border-right: 0;
+    }
+
+    tbody tr:hover {
+        cursor: pointer;
+        background-color: var(--light-crimson);
+    }
+}
