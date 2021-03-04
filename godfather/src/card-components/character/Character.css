@@ -1,0 +1,57 @@
+/* Status box */
+#character-status {
+    margin-top: 2rem;
+    margin-left: 1rem;
+    align-items: center;
+}
+
+.sts-row abbr{
+    cursor: default;
+    text-decoration: none;
+}
+
+.sts-row button {
+    background-color: var(--light-brown);
+}
+
+.sts-row button:hover {
+    background-color: var(--brown);
+}
+
+.status-hr {
+    margin: -0.5rem 0 0.5rem 0;
+    padding: 0;
+}
+
+/* Level box */
+#level-box {
+    margin-top: 0.5rem;
+}
+
+#level-box #character-level {
+    margin-left: 0.5rem;
+}
+
+.progress {
+    margin: 0.25rem 0 0.25rem 0.5rem;
+}
+
+.progress-bar {
+    background: var(--dark-crimson);
+}
+
+/* Equipament */
+.item-box {
+    width: 3rem;
+    height: 3rem;
+    background-color: red;
+    border: 1px solid var(--suit-black);
+    margin: 1rem 0;
+}
+
+@media (min-width: 1000px) {
+    .item-box {
+        width: 8rem;
+        height: 8rem;
+    }
+}
