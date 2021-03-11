@@ -40,9 +40,9 @@ class App extends React.Component {
                 <main>
                     <Switch>
                         <section id="card">
-                            {/* Your card component goes here */}
+                            {Your card component goes here}
                             <Route path="/"><Home /></Route>
-                            {/* <Route path="/market"><Market /></Route> */}
+                            {<Route path="/market"><Market /></Route>}
                         </section>
                     </Switch>
                 </main>
