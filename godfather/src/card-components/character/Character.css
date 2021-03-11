@@ -1,7 +1,8 @@
 /* Status box */
 #character-status {
     margin-top: 2rem;
-    margin-left: 1rem;
+    margin-left: auto;
+    margin-right: auto;
     align-items: center;
 }
 
@@ -15,6 +16,10 @@
 }
 
 .sts-row button:hover {
+    background-color: var(--brown);
+}
+
+.sts-row button:focus {
     background-color: var(--brown);
 }
 
@@ -43,11 +48,11 @@
 
 /* Equipament */
 .item-box {
-    width: 3rem;
-    height: 3rem;
+    width: auto;
+    height: 5rem;
     background-color: red;
     border: 1px solid var(--suit-black);
-    margin: 1rem 0;
+    margin: 1rem auto;
 }
 
 @media (min-width: 1000px) {

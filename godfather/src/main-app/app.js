@@ -13,8 +13,12 @@ import {
 import Home from '../card-components/home-page/home';
 import Duels from '../card-components/duels/duels';
 import Missions from '../card-components/missions/missions'
-import Character from '../ca,rd-components/character/character'
+import Character from '../card-components/character/character'
 import GoldShop from '../card-components/gold/gold-shop'
+
+// imports to testPlayer and testMissions
+import testPlayerImage from '../card-components/character/mafia-luffy.jpg';
+
 
 class App extends React.Component {
 
@@ -24,6 +28,39 @@ class App extends React.Component {
     }
 
     render() {
+        const testPlayer = {
+            picture: testPlayerImage,
+            name: 'Don Luffino',
+            status: [21, 42, 10, 23],
+            equipament: [{}, {}, {}, {}],
+            inventory: [{}, {}, {}, {}, {}, {}, {}, {}]
+        }
+
+        const testMisions = {
+            missionsArray: [
+                {
+                    name: 'Sicilian immigrant',
+                    description: 'blabla',
+                    xp: 20,
+                    cash: 50,
+                    time: 3
+                },
+                {
+                    name: 'Fender Ketchup',
+                    description: 'blabla',
+                    xp: 10,
+                    cash: 10,
+                    time: 1
+                },
+                {
+                    name: 'Just business',
+                    description: 'blabla',
+                    xp: 15,
+                    cash: 30,
+                    time: 2
+                }
+            ]
+        }
         return(
             <Router>
                 {/* Logo / Menu*/}
@@ -38,15 +75,17 @@ class App extends React.Component {
 
                 {/* Card */}
                 <main>
-                    <Switch>
-                        <section id="card">
+                    <section id="card">
+                        <Switch>
                             {/* Your card component goes here */}
-                            <Route path="/"><Home /></Route>
-                             <Route patch=" /duels"><Duels /></Route>
+                            <Route exact path="/"><Home /></Route>
+                            <Route path="/character"><Character player={testPlayer}/></Route>
+                            <Route path="/missions"><Missions missions={testMisions} /></Route>
+                            <Route path="/duels"><Duels /></Route>
                             {/* <Route path="/market"><Market /></Route> */}
-                            <Route patch=" /gold-shop"><GoldShop /></Route>
-                        </section>
-                    </Switch>
+                            <Route path="/gold-shop"><GoldShop /></Route>
+                        </Switch>
+                    </section>
                 </main>
 
                 {/* Footer */}

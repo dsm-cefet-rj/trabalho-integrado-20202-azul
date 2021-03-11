@@ -29,7 +29,7 @@ function GoldShop(props) {
                             <td className="value">R$200,00</td>
                             <td className="bonus">20%</td>
                             <td className="to-buy">
-                                <a className="btn btn-primary btn-lg" href="./gold-shop.js" role="button">
+                                <a className="btn btn-primary btn-lg" href="/" role="button" target="_blank" rel="external">
                                     Comprar<i className="fas fa-external-link-alt"></i>
                                 </a>
                             </td>
@@ -42,7 +42,7 @@ function GoldShop(props) {
                             <td className="value">R$100,00</td>
                             <td className="bonus">15%</td>
                             <td className="to-buy">
-                                <a className="btn btn-primary btn-lg" href="./gold-shop.js" role="button">
+                                <a className="btn btn-primary btn-lg" href="/" role="button" target="_blank" rel="external">
                                     Comprar<i className="fas fa-external-link-alt"></i>
                                 </a>
                             </td>
@@ -55,7 +55,7 @@ function GoldShop(props) {
                             <td className="value">R$50,00</td>
                             <td className="bonus">10%</td>
                             <td className="to-buy">
-                                <a className="btn btn-primary btn-lg" href="./gold-shop.js" role="button">
+                                <a className="btn btn-primary btn-lg" href="/" role="button" target="_blank" rel="external">
                                     Comprar<i className="fas fa-external-link-alt"></i>
                                 </a>
                             </td>
