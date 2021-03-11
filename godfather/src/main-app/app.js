@@ -3,13 +3,18 @@ import './App.css';
 import Logo from '../header-footer/logo/logo';
 import Menu from '../header-footer/menu/menu';
 import Footer from '../header-footer/footer/footer';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from "react-router-dom";
 
 // Cards
-// import Home from '../card-components/home-page/home';
-// import Duels from '../card-components/duels/duels';
-// import Missions from '../card-components/missions/missions'
+import Home from '../card-components/home-page/home';
+import Duels from '../card-components/duels/duels';
+import Missions from '../card-components/missions/missions'
 import Character from '../card-components/character/character'
-// import GoldShop from '../card-components/gold/gold-shop'
+import GoldShop from '../card-components/gold/gold-shop'
 
 class App extends React.Component {
 
@@ -20,7 +25,7 @@ class App extends React.Component {
 
     render() {
         return(
-            <>
+            <Router>
                 {/* Logo / Menu*/}
                 <header>
                     <section id="logo">
@@ -33,10 +38,13 @@ class App extends React.Component {
 
                 {/* Card */}
                 <main>
-                    <section id="card">
-                        {/* Your card component goes here */}
-                        <Character />
-                    </section>
+                    <Switch>
+                        <section id="card">
+                            {/* Your card component goes here */}
+                            <Route path="/"><Home /></Route>
+                            {/* <Route path="/market"><Market /></Route> */}
+                        </section>
+                    </Switch>
                 </main>
 
                 {/* Footer */}
@@ -45,7 +53,7 @@ class App extends React.Component {
                         <Footer />
                     </section>
                 </footer>
-            </>
+            </Router>
         );
     }
 }

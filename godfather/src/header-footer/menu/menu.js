@@ -1,22 +1,23 @@
 import './Menu.css';
+import {Link} from "react-router-dom";
 
 function Menu() {
     return (
         <div className="row justify-content-md-center">
             <div className="col">
-                <strong><a href="pages/character/character.html">Character</a></strong>
+                <strong><Link to="/character">Character</Link></strong>
             </div>
             <div className="col">
-                <strong><a href="pages/missions/missions.html">Missions</a></strong>
+                <strong><Link to="/missions">Missions</Link></strong>
             </div>
             <div className="col">
-                <strong><a href="pages/duels/duels.html">Duels</a></strong>
+                <strong><Link to="/duels">Duels</Link></strong>
             </div>
             <div className="col">
-                <strong><a href="pages/idk">Market</a></strong>
+                <strong><Link to="/market">Market</Link></strong>
             </div>
             <div className="col">
-                <strong><a href="pages/gold-shop/gold-shop.html">Gold</a></strong>
+                <strong><Link to="/gold-shop">Gold</Link></strong>
             </div>
         </div>
     );
