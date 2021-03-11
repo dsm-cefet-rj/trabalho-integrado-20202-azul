@@ -48,7 +48,13 @@ td{
     color: var(--golden-wind);
 }
 
-i {
+.to-buy a:focus {
+    background-color: var(--dark-crimson);
+    border-color: var(--dark-crimson);
+    color: var(--golden-wind);
+}
+
+.to-buy > a > i {
     padding-left: 0.5rem;
 }
 /*

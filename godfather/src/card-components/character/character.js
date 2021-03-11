@@ -1,6 +1,6 @@
 import './Character.css';
-import testPlayerImage from './mafia-luffy.jpg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import testPlayerImage from './mafia-luffy.jpg';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Character(props) {
 	return (
@@ -13,9 +13,9 @@ function Character(props) {
 			<div className="card-content">
 				
 				<div className="row" id="character-info">
-					<div className="col col-lg-8 character-basic-info">
-						<h3 id="character-name"><strong>Don Luffino</strong></h3>
-						<img className="img-thumbnail" id="character-img" src={testPlayerImage} alt="Imagem do personagem"></img>
+					<div className="col col-lg-7 character-basic-info">
+						<h3 id="character-name"><strong>{props.player.name}</strong></h3>
+						<img className="img-thumbnail" id="character-img" src={props.player.picture} alt="Imagem do personagem"></img>
 
 						<div id="level-box" className="d-flex justify-content-between">
 							Lv<span id="character-level">15</span>
@@ -29,26 +29,42 @@ function Character(props) {
 						</div>
 					</div>
 
-					<div id="character-status" className="col">
+					<div id="character-status" className="col col-lg-4">
 						<div className="d-flex justify-content-between sts-row">
-							<p><i className="fas fa-fist-raised"></i> <abbr title="Ataque - Influencia a quantidade de dano causado">Atk</abbr></p>
-							<span id="atk-value">18 <button id="add-atk" className="status-button btn btn-secondary btn-sm"><FontAwesomeIcon icon={["fas", "coffee"]} /></button></span>
+							<p>
+								<i className="fas fa-fist-raised"></i>
+								<abbr title="Ataque - Influencia a quantidade de dano causado"> Atk</abbr>
+							</p>
+							<span id="atk-value">{props.player.status[0]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
 						</div>
+
 						<hr className="status-hr"/>
 						<div className="d-flex justify-content-between sts-row">
-							<p><i className="fas fa-shield-alt"></i> <abbr title="Resistencia - Aumenta o tamanho da sua barra de vida">Res</abbr></p>
-							<span id="atk-value">18 <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
+							<p>
+								<i className="fas fa-shield-alt"></i>
+								<abbr title="Resistencia - Aumenta o tamanho da sua barra de vida"> Res</abbr>
+							</p>
+							<span id="res-value">{props.player.status[1]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
 						</div>
+
 						<hr className="status-hr"/>
 						<div className="d-flex justify-content-between sts-row">
-							<p><i className="fas fa-dice-six"></i> <abbr title="Sorte - Influencia a chance de acerto crítico">Lck</abbr></p>
-							<span id="atk-value">18 <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
+							<p>
+								<i className="fas fa-dice-six"></i>
+								<abbr title="Sorte - Influencia a chance de acerto crítico"> Lck</abbr>
+							</p>
+							<span id="lck-value">{props.player.status[2]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
 						</div>
+
 						<hr className="status-hr"/>
 						<div className="d-flex justify-content-between sts-row">
-							<p><i className="fas fa-gopuram"></i> <abbr title="Resiliência - Diminui a chance de acerto crítico de seu adversário">Rsl</abbr></p>
-							<span id="atk-value">18 <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
+							<p>
+								<i className="fas fa-gopuram"></i>
+								<abbr title="Resiliência - Diminui a chance de acerto crítico de seu adversário"> Rsl</abbr>
+							</p>
+							<span id="rsl-value">{props.player.status[3]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
 						</div>
+
 					</div>
 				</div>
 				<hr/>

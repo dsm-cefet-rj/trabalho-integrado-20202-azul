@@ -20,13 +20,13 @@ function Missions (props) {
                     <div id="missions-inbox" className="col">
                         <ul className="list-group">
                             <button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#mission-details-modal">
-                                Imigrante siciliano
+                                {props.missions.missionsArray[0].name}
                             </button>
                             <button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#mission-details-modal">
-                                Fender Ketchup
+                                {props.missions.missionsArray[1].name}
                             </button>
                             <button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#mission-details-modal">
-                                Coletar impostos
+                                {props.missions.missionsArray[2].name}
                             </button>
                         </ul>
                     </div>
