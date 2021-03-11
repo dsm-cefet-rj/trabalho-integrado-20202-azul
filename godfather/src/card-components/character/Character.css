@@ -38,6 +38,7 @@
 
 .progress-bar {
     background: var(--dark-crimson);
+    width: 75%;
 }
 
 /* Equipament */

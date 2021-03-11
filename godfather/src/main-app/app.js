@@ -7,7 +7,9 @@ import Footer from '../header-footer/footer/footer';
 // Cards
 // import Home from '../card-components/home-page/home';
 // import Duels from '../card-components/duels/duels';
-import Missions from '../card-components/missions/missions'
+// import Missions from '../card-components/missions/missions'
+import Character from '../card-components/character/character'
+// import GoldShop from '../card-components/gold/gold-shop'
 
 class App extends React.Component {
 
@@ -33,7 +35,7 @@ class App extends React.Component {
                 <main>
                     <section id="card">
                         {/* Your card component goes here */}
-                        <Missions />
+                        <Character />
                     </section>
                 </main>
 
