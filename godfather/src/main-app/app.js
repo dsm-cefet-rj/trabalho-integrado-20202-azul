@@ -13,7 +13,7 @@ import {
 import Home from '../card-components/home-page/home';
 import Duels from '../card-components/duels/duels';
 import Missions from '../card-components/missions/missions'
-import Character from '../card-components/character/character'
+import Character from '../ca,rd-components/character/character'
 import GoldShop from '../card-components/gold/gold-shop'
 
 class App extends React.Component {
@@ -42,7 +42,9 @@ class App extends React.Component {
                         <section id="card">
                             {Your card component goes here}
                             <Route path="/"><Home /></Route>
+                             <Route patch=" /duels"><Duels /></Route>
                             {<Route path="/market"><Market /></Route>}
+                            <Route patch=" /gold-shop"><GoldShop /></Route>
                         </section>
                     </Switch>
                 </main>
