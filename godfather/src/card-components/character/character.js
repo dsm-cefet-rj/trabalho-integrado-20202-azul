@@ -6,7 +6,7 @@ function Character(props) {
 	return (
 		<>
 			<div className="card-title">
-				<h2 className="display-6">Personagem</h2>
+				<h2 className="display-6">Character</h2>
 			</div>
 			<hr/>
 
@@ -33,7 +33,7 @@ function Character(props) {
 						<div className="d-flex justify-content-between sts-row">
 							<p>
 								<i className="fas fa-fist-raised"></i>
-								<abbr title="Ataque - Influencia a quantidade de dano causado"> Atk</abbr>
+								<abbr title="Attack - The attack attribute increase your damage"> Atk</abbr>
 							</p>
 							<span id="atk-value">{props.player.status[0]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
 						</div>
@@ -42,7 +42,7 @@ function Character(props) {
 						<div className="d-flex justify-content-between sts-row">
 							<p>
 								<i className="fas fa-shield-alt"></i>
-								<abbr title="Resistencia - Aumenta o tamanho da sua barra de vida"> Res</abbr>
+								<abbr title="Resistance - The resistance attribute increase your HP amount"> Res</abbr>
 							</p>
 							<span id="res-value">{props.player.status[1]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
 						</div>
@@ -51,7 +51,7 @@ function Character(props) {
 						<div className="d-flex justify-content-between sts-row">
 							<p>
 								<i className="fas fa-dice-six"></i>
-								<abbr title="Sorte - Influencia a chance de acerto crítico"> Lck</abbr>
+								<abbr title="Luck - The luck attribute increase your chance of getting a critical hit"> Lck</abbr>
 							</p>
 							<span id="lck-value">{props.player.status[2]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
 						</div>
@@ -60,7 +60,7 @@ function Character(props) {
 						<div className="d-flex justify-content-between sts-row">
 							<p>
 								<i className="fas fa-gopuram"></i>
-								<abbr title="Resiliência - Diminui a chance de acerto crítico de seu adversário"> Rsl</abbr>
+								<abbr title="Resilience - The resilience attribute decrease your chance of taking a critical hit"> Rsl</abbr>
 							</p>
 							<span id="rsl-value">{props.player.status[3]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
 						</div>
@@ -70,8 +70,8 @@ function Character(props) {
 				<hr/>
 
 
-				<div id="equipament">
-					<h3><strong>Equipamento</strong></h3>
+				<div id="equipment">
+					<h3><strong>Equipment</strong></h3>
 					<div className="equipament-grid row item-grid">
 						<div className="col">
 							<div className="item-box gun-reserved-equipament-slot">
@@ -95,7 +95,7 @@ function Character(props) {
 
 
 				<div id="inventory">
-					<h3><strong>Inventário</strong></h3>
+					<h3><strong>Inventory</strong></h3>
 					<div className="inventory-grid row item-grid">
 						<div className="col">
 							<div className="item-box inventory-item-slot">

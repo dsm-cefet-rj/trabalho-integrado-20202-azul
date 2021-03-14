@@ -7,16 +7,16 @@ function GoldShop(props) {
 	return (
 		<>
 			<div className="card-title">
-                <h2 className="display-6">Loja de Gold</h2>
+                <h2 className="display-6">Gold Store</h2>
             </div>
             <hr />
             <div className="card-content">
                 <table id="data-table">
                     <thead>
                         <tr>
-                            <th>Descrição</th>
-                            <th>Valor</th>
-                            <th>Bonus Gold</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Bonus</th>
                             <th className="to-buy"></th>
                         </tr>
                     </thead>
@@ -30,7 +30,7 @@ function GoldShop(props) {
                             <td className="bonus">20%</td>
                             <td className="to-buy">
                                 <a className="btn btn-primary btn-lg" href="/" role="button" target="_blank" rel="external">
-                                    Comprar<i className="fas fa-external-link-alt"></i>
+                                    Buy<i className="fas fa-external-link-alt"></i>
                                 </a>
                             </td>
                         </tr>
@@ -43,7 +43,7 @@ function GoldShop(props) {
                             <td className="bonus">15%</td>
                             <td className="to-buy">
                                 <a className="btn btn-primary btn-lg" href="/" role="button" target="_blank" rel="external">
-                                    Comprar<i className="fas fa-external-link-alt"></i>
+                                    Buy<i className="fas fa-external-link-alt"></i>
                                 </a>
                             </td>
                         </tr>
@@ -56,7 +56,7 @@ function GoldShop(props) {
                             <td className="bonus">10%</td>
                             <td className="to-buy">
                                 <a className="btn btn-primary btn-lg" href="/" role="button" target="_blank" rel="external">
-                                    Comprar<i className="fas fa-external-link-alt"></i>
+                                    Buy<i className="fas fa-external-link-alt"></i>
                                 </a>
                             </td>
                         </tr>

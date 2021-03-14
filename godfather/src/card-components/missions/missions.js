@@ -4,7 +4,7 @@ function Missions (props) {
     return(
         <>
             <div className="card-title">
-                <h2 className="display-6">Missões</h2>
+                <h2 className="display-6">Missions</h2>
             </div>
             <hr />
 
@@ -35,7 +35,7 @@ function Missions (props) {
 
 
                 {/* <!-- Active Mission --> */}
-                <h3 className="fw-bold">Missão ativa</h3>
+                <h3 className="fw-bold">Active Mission</h3>
 
                 <div className="active-mission-box">
                     <div id="mission-header">
@@ -49,20 +49,19 @@ function Missions (props) {
 
                     <div id="ac-mission-rewards" className="row">
                         <div className="col col-md-8 col-lg-8">
-                            <p>Recompensas: </p>
+                            <p>Rewards: </p>
                         </div>
                         <div className="col" id="xp-reward">
-                            <span>20</span>xp
+                            <strong><span>20</span></strong> XP
                         </div>
                         <div className="col" id="money-reward">
-                            $<span>50</span>
+                            $ <strong><span>50</span></strong>
                         </div>
                     </div>
 
                     <div id="ac-actions">
                         <div id="ac-timer">
-                            Tempo restante: 
-                            <span>07:58</span>
+                            Time remaining: <strong><span>07:58</span></strong>
                         </div>
                         <div id="ac-buttons" className="d-flex justify-content-end">
                             <button id="cancel-button" className="status-button btn btn-secondary">Cancelar</button>

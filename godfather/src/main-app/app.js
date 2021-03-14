@@ -38,7 +38,9 @@ class App extends React.Component {
                 equipament: [{}, {}, {}, {}],
                 inventory: [{}, {}, {}, {}, {}, {}, {}, {}],
                 activeMission: {}
-            }
+            },
+
+            missions: {}
         }
 
     }
@@ -67,7 +69,7 @@ class App extends React.Component {
                             {/* Your card component goes here */}
                             <Route exact path="/"><Home /></Route>
                             <Route path="/character"><Character player={this.state.character}/></Route>
-                            {/* <Route path="/missions"><Missions missions={testMisions} /></Route> */}
+                            <Route path="/missions"><Missions missions={this.state.missions} /></Route>
                             <Route path="/duels"><Duels /></Route>
                             {/* <Route path="/market"><Market /></Route> */}
                             <Route path="/gold-shop"><GoldShop /></Route>
@@ -126,7 +128,8 @@ class App extends React.Component {
 
         // Inserting data in state
         this.setState({
-            character: tempCharacter
+            character: tempCharacter,
+            missions: tempMisions
         })
     }
 }
