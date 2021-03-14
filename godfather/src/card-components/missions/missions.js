@@ -74,6 +74,41 @@ function Missions (props) {
                     </div>
                 </div>
             </div>
+
+            {/* Accepting mission modal */}
+                {/* Modal */}
+                <div className="modal fade" id="mission-details-modal" tabindex="-1">
+                    <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="modal-mission-name">Mission name</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                                <p id="modal-mission-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat doloribus laudantium voluptatibus qui molestias impedit non nulla dolorum nam voluptate et accusantium suscipit sequi, accusamus quas similique repellendus, veritatis quia.</p>
+                                <p id="modal-mission-sender" className="text-end">
+                                    Don Corleone
+                                </p>
+                                <div id="modal-mission-rewards" className="row">
+                                    <div className="col">
+                                        <p>Rewards: </p>
+                                    </div>
+                                    <div className="col" id="xp-reward">
+                                        <span>20</span> XP
+                                    </div>
+                                    <div className="col" id="money-reward">
+                                        $ <span>50</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <p>Time: 04:00</p>
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-success">Combat</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </>
     );
 }

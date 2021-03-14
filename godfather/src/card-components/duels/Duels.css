@@ -54,3 +54,28 @@
      background-color: var(--brown);
      color: var(--light-gray);
  }
+
+ /* Modal */
+.modal-content {
+    color: var(--brown);
+    background-color: var(--light-gray);
+}
+
+/* Modal buttons */
+#cancel-queue-button {
+    background-color: var(--king-crimson);
+    border-color: var(--king-crimson);
+}
+#cancel-queue-button:hover {
+    background-color: var(--dark-crimson);
+    border-color: var(--dark-crimson);
+}
+
+#confirm-combat-button {
+    background-color: var(--dark-green);
+    border-color: var(--dark-green);
+}
+#confirm-combat-button:hover {
+    background-color: var(--brown);
+    border-color: var(--brown);
+}
