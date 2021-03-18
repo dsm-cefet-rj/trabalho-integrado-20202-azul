@@ -1,7 +1,17 @@
 import './Character.css';
-// import testPlayerImage from './mafia-luffy.jpg';
+import { useSelector, useDispatch } from 'react-redux'
 
 function Character(props) {
+
+	const character = useSelector(state => state)
+	const dispatch = useDispatch()
+
+	const addStatus = (statusIndex) => {
+		// dispatch({ type: 'ADD_STATUS', index: statusIndex })
+	}
+
+	console.log('Character', character)
+
 	return (
 		<>
 			<div className="card-title">
@@ -13,8 +23,8 @@ function Character(props) {
 				
 				<div className="row" id="character-info">
 					<div className="col col-lg-7 character-basic-info">
-						<h3 id="character-name"><strong>{props.player.name}</strong></h3>
-						<img className="img-thumbnail" id="character-img" src={props.player.picture} alt="Imagem do personagem"></img>
+						<h3 id="character-name"><strong>{character.name}</strong></h3>
+						<img className="img-thumbnail" id="character-img" src={character.picture} alt="Imagem do personagem"></img>
 
 						{/* LEVEL */}
 						<div id="level-box" className="d-flex justify-content-between">
@@ -30,10 +40,11 @@ function Character(props) {
 
 						{/* REPUTATION */}
 						<div id="reputation">
-							<p>Reputation: <span id="character-reputation">1550</span> </p>
+							<p>Reputation: <span id="character-reputation">{character.reputation}</span> </p>
 						</div>
 					</div>
 
+					{/* STATUS */}
 					<div id="character-status" className="col col-lg-4">
 						<h3 className="text-center" ><strong>Status</strong></h3> <hr className="status-hr" />
 						<div className="d-flex justify-content-between sts-row">
@@ -41,7 +52,7 @@ function Character(props) {
 								<i className="fas fa-fist-raised"></i>
 								<abbr title="Attack - The attack attribute increase your damage"> Atk</abbr>
 							</p>
-							<span id="atk-value">{props.player.status[0]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
+							<span id="atk-value">{character.status[0]} <button id="add-atk" className="status-button btn btn-secondary btn-sm" onClick={addStatus(0)} ><i className="fas fa-plus"></i></button></span>
 						</div>
 
 						<hr className="status-hr"/>
@@ -50,7 +61,7 @@ function Character(props) {
 								<i className="fas fa-shield-alt"></i>
 								<abbr title="Resistance - The resistance attribute increase your HP amount"> Res</abbr>
 							</p>
-							<span id="res-value">{props.player.status[1]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
+							<span id="res-value">{character.status[1]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus" onClick={addStatus(1)} ></i></button></span>
 						</div>
 
 						<hr className="status-hr"/>
@@ -59,7 +70,7 @@ function Character(props) {
 								<i className="fas fa-dice-six"></i>
 								<abbr title="Luck - The luck attribute increase your chance of getting a critical hit"> Lck</abbr>
 							</p>
-							<span id="lck-value">{props.player.status[2]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
+							<span id="lck-value">{character.status[2]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus" onClick={addStatus(2)} ></i></button></span>
 						</div>
 
 						<hr className="status-hr"/>
@@ -68,7 +79,7 @@ function Character(props) {
 								<i className="fas fa-gopuram"></i>
 								<abbr title="Resilience - The resilience attribute decrease your chance of taking a critical hit"> Rsl</abbr>
 							</p>
-							<span id="rsl-value">{props.player.status[3]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus"></i></button></span>
+							<span id="rsl-value">{character.status[3]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus" onClick={addStatus(3)} ></i></button></span>
 						</div>
 
 					</div>
