@@ -4,7 +4,7 @@ import Logo from '../header-footer/logo/logo'
 import Menu from '../header-footer/menu/menu'
 import Footer from '../header-footer/footer/footer'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import {
     BrowserRouter as Router,
@@ -23,6 +23,7 @@ import GoldShop from '../card-components/gold/gold-shop'
 const Appo = () => {
 
     const characterSelector = useSelector(state => state)
+    // const dispatch = useDispatch()
 
     const [character, setCharacter] = useState({
         picture: {},
@@ -87,9 +88,22 @@ const Appo = () => {
     })
 
     useEffect(() => {
+        // fetch('/player-data').then(res => res.json()).then(data => {
+        //     dispatch({
+        //         type: 'SET_CHARACTER',
+        //         picture: data.character.picture,
+        //         name: data.character.name,
+        //         status: data.character.status,
+        //         reputation: data.character.reputation,
+        //         equipament: data.character.equipament,
+        //         inventory: data.character.inventory,
+        //         activeMission: data.character.activeMission
+        //     })
+        // })
         setCharacter(characterSelector)
         console.log( 'CHARACTER STATE', character)
     })
+    // useEffect without []
 
     return (
             <Router>
