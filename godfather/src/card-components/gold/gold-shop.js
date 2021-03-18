@@ -1,9 +1,39 @@
 import './Gold-shop.css';
-import goldImage1200 from './1200g-300px.jpg';
+// import goldImage1200 from './1200g-300px.jpg';
 import goldImage575 from './575g-300px.jpg';
-import goldImage275 from './275g-300px.jpg';
+// import goldImage275 from './275g-300px.jpg';
 
 function GoldShop(props) {
+
+    const fillOffersTable = (goldOffers) => {
+        if (goldOffers === 0) {
+            return
+        }
+
+        let trows = []
+        let offerArray = goldOffers.offerArray
+
+        offerArray.forEach(element => {
+            trows.push(
+                <tr className="offer">
+                    <td className="description">
+                        <img src={goldImage575} alt="Diversas barras de ouro" />
+                        <br />{element.title}<br />{element.value}G
+                    </td>
+                    <td className="value">{element.price}</td>
+                    <td className="bonus">{element.bonus}</td>
+                    <td className="to-buy">
+                        <a className="btn btn-primary btn-lg" href="/" role="button" target="_blank" rel="external">
+                            Buy<i className="fas fa-external-link-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            )
+        })
+
+        return <>{trows}</>
+    }
+
 	return (
 		<>
 			<div className="card-title">
@@ -21,7 +51,17 @@ function GoldShop(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="offer">
+                        {fillOffersTable(props.goldOffers)}
+                    </tbody>
+                </table>
+            </div>
+		</>
+	);
+}
+
+export default GoldShop;
+
+{/* <tr className="offer">
                             <td className="description">
                                 <img src={goldImage1200} alt="Diversas barras de ouro" />
                                 <br />Herança do Don<br />1200G
@@ -59,12 +99,4 @@ function GoldShop(props) {
                                     Buy<i className="fas fa-external-link-alt"></i>
                                 </a>
                             </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-		</>
-	);
-}
-
-export default GoldShop;
+                        </tr> */}

@@ -1,6 +1,5 @@
 import './Character.css';
 // import testPlayerImage from './mafia-luffy.jpg';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Character(props) {
 	return (
@@ -17,6 +16,7 @@ function Character(props) {
 						<h3 id="character-name"><strong>{props.player.name}</strong></h3>
 						<img className="img-thumbnail" id="character-img" src={props.player.picture} alt="Imagem do personagem"></img>
 
+						{/* LEVEL */}
 						<div id="level-box" className="d-flex justify-content-between">
 							Lv<span id="character-level">15</span>
 
@@ -27,9 +27,15 @@ function Character(props) {
 								</div>
 							</div>
 						</div>
+
+						{/* REPUTATION */}
+						<div id="reputation">
+							<p>Reputation: <span id="character-reputation">1550</span> </p>
+						</div>
 					</div>
 
 					<div id="character-status" className="col col-lg-4">
+						<h3 className="text-center" ><strong>Status</strong></h3> <hr className="status-hr" />
 						<div className="d-flex justify-content-between sts-row">
 							<p>
 								<i className="fas fa-fist-raised"></i>
