@@ -22,7 +22,7 @@ import GoldShop from '../card-components/gold/gold-shop'
 
 const App = () => {
 
-    const characterSelector = useSelector(state => state)
+    const characterSelector = useSelector(state => state.character)
     // const dispatch = useDispatch()
 
     const [character, setCharacter] = useState({
@@ -101,7 +101,6 @@ const App = () => {
         //     })
         // })
         setCharacter(characterSelector)
-        console.log( 'CHARACTER STATE', character)
     })
 
     return (

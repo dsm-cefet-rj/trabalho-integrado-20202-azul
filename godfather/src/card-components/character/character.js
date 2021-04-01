@@ -15,8 +15,6 @@ function Character(props) {
 
 	}
 
-	console.log('Character', character)
-
 	return (
 		<>
 			<div className="card-title">
