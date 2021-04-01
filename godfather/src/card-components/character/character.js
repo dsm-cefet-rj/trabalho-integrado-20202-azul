@@ -1,13 +1,18 @@
 import './Character.css';
 import { useSelector, useDispatch } from 'react-redux'
+import { incrementStatus } from '../../store/slices/characterSlice'
 
 function Character(props) {
 
-	const character = useSelector(state => state)
+	const character = useSelector(state => state.character)
 	const dispatch = useDispatch()
 
-	const addStatus = (statusIndex) => {
-		// dispatch({ type: 'ADD_STATUS', index: statusIndex })
+	const addStatus = {
+		atk: () => dispatch(incrementStatus({ sts: 'atk' })),
+		res: () => dispatch(incrementStatus({ sts: 'res' })),
+		lck: () => dispatch(incrementStatus({ sts: 'lck' })),
+		rsl: () => dispatch(incrementStatus({ sts: 'rsl' }))
+
 	}
 
 	console.log('Character', character)
@@ -54,7 +59,7 @@ function Character(props) {
 								<i className="fas fa-fist-raised"></i>
 								<abbr title="Attack - The attack attribute increase your damage"> Atk</abbr>
 							</p>
-							<span id="atk-value">{character.status[0]} <button id="add-atk" className="status-button btn btn-secondary btn-sm" onClick={addStatus(0)} ><i className="fas fa-plus"></i></button></span>
+							<span id="atk-value">{character.status.atk} <button id="add-atk" className="status-button btn btn-secondary btn-sm" onClick={addStatus.atk} ><i className="fas fa-plus"></i></button></span>
 						</div>
 
 						<hr className="status-hr"/>
@@ -63,7 +68,7 @@ function Character(props) {
 								<i className="fas fa-shield-alt"></i>
 								<abbr title="Resistance - The resistance attribute increase your HP amount"> Res</abbr>
 							</p>
-							<span id="res-value">{character.status[1]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus" onClick={addStatus(1)} ></i></button></span>
+							<span id="res-value">{character.status.res} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus" onClick={addStatus.res} ></i></button></span>
 						</div>
 
 						<hr className="status-hr"/>
@@ -72,7 +77,7 @@ function Character(props) {
 								<i className="fas fa-dice-six"></i>
 								<abbr title="Luck - The luck attribute increase your chance of getting a critical hit"> Lck</abbr>
 							</p>
-							<span id="lck-value">{character.status[2]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus" onClick={addStatus(2)} ></i></button></span>
+							<span id="lck-value">{character.status.lck} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus" onClick={addStatus.lck} ></i></button></span>
 						</div>
 
 						<hr className="status-hr"/>
@@ -81,7 +86,7 @@ function Character(props) {
 								<i className="fas fa-gopuram"></i>
 								<abbr title="Resilience - The resilience attribute decrease your chance of taking a critical hit"> Rsl</abbr>
 							</p>
-							<span id="rsl-value">{character.status[3]} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus" onClick={addStatus(3)} ></i></button></span>
+							<span id="rsl-value">{character.status.rsl} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus" onClick={addStatus.rsl} ></i></button></span>
 						</div>
 
 					</div>
