@@ -1,6 +1,6 @@
 import './Gold-shop.css';
-// import goldImage1200 from './1200g-300px.jpg';
-import goldImage575 from './575g-300px.jpg';
+import goldImage1200 from './1200g-300px.jpg';
+// import goldImage575 from './575g-300px.jpg';
 // import goldImage275 from './275g-300px.jpg';
 
 function GoldShop(props) {
@@ -17,7 +17,7 @@ function GoldShop(props) {
             trows.push(
                 <tr className="offer">
                     <td className="description">
-                        <img src={goldImage575} alt="Diversas barras de ouro" />
+                        <img src={goldImage1200} alt="Diversas barras de ouro" />
                         <br />{element.title}<br />{element.value}G
                     </td>
                     <td className="value">{element.price}</td>

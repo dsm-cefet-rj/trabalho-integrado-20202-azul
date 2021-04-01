@@ -39,9 +39,11 @@ function Character(props) {
 						</div>
 
 						{/* REPUTATION */}
+{/* 
 						<div id="reputation">
 							<p>Reputation: <span id="character-reputation">{character.reputation}</span> </p>
 						</div>
+*/}
 					</div>
 
 					{/* STATUS */}
@@ -84,8 +86,7 @@ function Character(props) {
 
 					</div>
 				</div>
-				<hr/>
-
+{/*				<hr/>
 
 				<div id="equipment">
 					<h3><strong>Equipment</strong></h3>
@@ -149,7 +150,8 @@ function Character(props) {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> 
+*/}
 			</div>
 		</>
 	);

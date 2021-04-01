@@ -5,9 +5,9 @@ const INITIAL_STATE = {
     picture: testPlayerImage,
     name: 'Don Luffino',
     status: [21, 42, 10, 23],
-    reputation: 20,
-    equipament: [{}, {}, {}, {}],
-    inventory: [{}, {}, {}, {}, {}, {}, {}, {}],
+    // reputation: 20,
+    // equipament: [{}, {}, {}, {}],
+    // inventory: [{}, {}, {}, {}, {}, {}, {}, {}],
     activeMission: {}
 }
 

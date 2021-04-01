@@ -14,7 +14,7 @@ function Menu() {
                 <strong><Link to="/duels">Duels</Link></strong>
             </div>
             <div className="col">
-                <strong><Link to="/market">Market</Link></strong>
+                <strong><Link>Market</Link></strong>
             </div>
             <div className="col">
                 <strong><Link to="/gold-shop">Gold</Link></strong>

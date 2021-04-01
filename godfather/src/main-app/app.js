@@ -103,7 +103,6 @@ const App = () => {
         setCharacter(characterSelector)
         console.log( 'CHARACTER STATE', character)
     })
-    // useEffect without []
 
     return (
             <Router>
