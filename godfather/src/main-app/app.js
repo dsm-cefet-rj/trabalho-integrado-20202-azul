@@ -19,6 +19,15 @@ import Missions from '../card-components/missions/missions'
 import Character from '../card-components/character/character'
 import GoldShop from '../card-components/gold/gold-shop'
 
+/**
+ * @module main-app/app
+ */
+
+/**
+ * Conteiner principal da aplicação
+ * Responsável pela estrutura da aplicação e pela gerência dos dados,
+ * deste sendo o topo da cascata.
+ */
 
 const App = () => {
 
