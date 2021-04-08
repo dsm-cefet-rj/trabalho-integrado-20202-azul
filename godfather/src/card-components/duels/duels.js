@@ -1,5 +1,16 @@
 import './Duels.css';
 
+/**
+ * @module duels/duels
+ */
+
+
+/**
+ * Reindeniza a página dos duelos
+ * @param {object} props.duels
+ *
+ */
+
 function Duels(props) {
     return (
         <>
