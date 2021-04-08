@@ -7,7 +7,7 @@ import teamImg from './the-godfather-logo-300w.png';
 
 
 /**
- * Reindeniza a página de personagens
+ * Reindeniza a página footer
  * @param {object} props.footer
  *
  */
