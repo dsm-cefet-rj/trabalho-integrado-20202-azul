@@ -19,25 +19,25 @@ function Missions () {
             if(!data && missionArray === data.missionArray) {
                 return
             }
-            console.log(data)
             setMissionArray(data.missionList)
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
     const missionList = () => {
         if (!missionArray) {
-            console.log('No mission array', missionArray)
             return
         }
 
         let array = []
-        
+        let i = 0
         missionArray.forEach(element => {
             array.push(
-                <button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#mission-details-modal">
+                <button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#mission-details-modal" key={i}>
                     {element.name}
                 </button>
             )
+            i++
         })
 
         return (<div>{array}</div>)
@@ -112,7 +112,7 @@ function Missions () {
 
             {/* Accepting mission modal */}
                 {/* Modal */}
-                <div className="modal fade" id="mission-details-modal" tabindex="-1">
+                <div className="modal fade" id="mission-details-modal" tabIndex="-1">
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content">
                             <div className="modal-header">

@@ -46,58 +46,6 @@ const App = () => {
         activeMission: {}
     })
 
-    // const [missions, setMissions] = useState({
-    //     missionArray: [
-    //         {
-    //             name: 'Sicilian immigrant',
-    //             description: '',
-    //             xp: 20,
-    //             cash: 50,
-    //             time: 3
-    //         },
-    //         {
-    //             name: 'Fender Ketchup',
-    //             description: '',
-    //             xp: 10,
-    //             cash: 10,
-    //             time: 1
-    //         },
-    //         {
-    //             name: 'Just business',
-    //             description: '',
-    //             xp: 15,
-    //             cash: 30,
-    //             time: 2
-    //         }
-    //     ]
-    // })
-
-    const [goldOffers, setGoldOffers] = useState({
-        offerArray: [
-            {
-                title: 'Herança do Don',
-                value: 1200,
-                picture: {},
-                price: 200,
-                bonus: '20%'
-            },
-            {
-                title: 'Dote de casamento',
-                value: 575,
-                picture: {},
-                price: 100,
-                bonus: '15%'
-            },
-            {
-                title: 'Pensão alimentícia',
-                value: 275,
-                picture: {},
-                price: 50,
-                bonus: '10%'
-            }
-        ]
-    })
-
     useEffect(() => {
         fetch('/api/character').then(res => res.json()).then(data => {
             if(!data) {
@@ -115,6 +63,7 @@ const App = () => {
             }))
         })
         setCharacterState(characterSelector)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -137,7 +86,7 @@ const App = () => {
                             <Route path="/character"><Character /></Route>
                             <Route path="/missions"><Missions /></Route>
                             <Route path="/duels"><Duels player={character} /></Route>
-                            <Route path="/gold-shop"><GoldShop goldOffers={goldOffers} /></Route>
+                            <Route path="/gold-shop"><GoldShop /></Route>
                         </Switch>
                     </section>
                 </main>

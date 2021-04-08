@@ -1,7 +1,8 @@
-import './Gold-shop.css';
-import goldImage1200 from './1200g-300px.jpg';
-// import goldImage575 from './575g-300px.jpg';
-// import goldImage275 from './275g-300px.jpg';
+import './Gold-shop.css'
+import goldImage1200 from './1200g-300px.jpg'
+// import goldImage575 from './575g-300px.jpg'
+// import goldImage275 from './275g-300px.jpg'
+import { useState, useEffect } from 'react'
 
 
 /**
@@ -15,19 +16,29 @@ import goldImage1200 from './1200g-300px.jpg';
  *
  */
 
-function GoldShop(props) {
+function GoldShop() {
 
-    const fillOffersTable = (goldOffers) => {
-        if (goldOffers === 0) {
+    const [offers, setOffers] = useState([
+        {
+            title: '',
+            value: 0,
+            picture: {},
+            price: 0,
+            bonus: '%'
+        }
+    ])
+
+    const fillOffersTable = () => {
+        if (!offers) {
             return
         }
 
         let trows = []
-        let offerArray = goldOffers.offerArray
+        let i = 0
 
-        offerArray.forEach(element => {
+        offers.forEach(element => {
             trows.push(
-                <tr className="offer">
+                <tr className="offer" key={i}>
                     <td className="description">
                         <img src={goldImage1200} alt="Diversas barras de ouro" />
                         <br />{element.title}<br />{element.value}G
@@ -41,10 +52,22 @@ function GoldShop(props) {
                     </td>
                 </tr>
             )
+            i++
         })
 
         return <>{trows}</>
     }
+
+    useEffect(() => {
+        fetch('/api/gold').then(res => res.json()).then(data => {
+            if(!data) {
+                return
+            } else {
+                setOffers(data.offerArray)
+            }
+        })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
 	return (
 		<>
@@ -63,7 +86,7 @@ function GoldShop(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {fillOffersTable(props.goldOffers)}
+                        {fillOffersTable()}
                     </tbody>
                 </table>
             </div>
@@ -72,43 +95,3 @@ function GoldShop(props) {
 }
 
 export default GoldShop;
-
-{/* <tr className="offer">
-                            <td className="description">
-                                <img src={goldImage1200} alt="Diversas barras de ouro" />
-                                <br />Herança do Don<br />1200G
-                            </td>
-                            <td className="value">R$200,00</td>
-                            <td className="bonus">20%</td>
-                            <td className="to-buy">
-                                <a className="btn btn-primary btn-lg" href="/" role="button" target="_blank" rel="external">
-                                    Buy<i className="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr className="offer">
-                            <td className="description">
-                                <img src={goldImage575} alt="Uma barra de ouro" />
-                                <br />Dote de casamento <br /> 575G
-                            </td>
-                            <td className="value">R$100,00</td>
-                            <td className="bonus">15%</td>
-                            <td className="to-buy">
-                                <a className="btn btn-primary btn-lg" href="/" role="button" target="_blank" rel="external">
-                                    Buy<i className="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr className="offer">
-                            <td className="description">
-                                <img src={goldImage275} alt="Algumas moedas" />
-                                <br />Pensão alimentícia <br /> 275G
-                            </td>
-                            <td className="value">R$50,00</td>
-                            <td className="bonus">10%</td>
-                            <td className="to-buy">
-                                <a className="btn btn-primary btn-lg" href="/" role="button" target="_blank" rel="external">
-                                    Buy<i className="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr> */}
