@@ -1,5 +1,16 @@
 import './Missions.css';
 
+/**
+ * @module missions/missions
+ */
+
+
+/**
+ * Reindeniza a página de missões
+ * @param {object} props.missions
+ *
+ */
+
 function Missions (props) {
     
     const missionList = () => {

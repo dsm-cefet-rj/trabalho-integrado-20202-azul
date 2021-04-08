@@ -3,6 +3,18 @@ import goldImage1200 from './1200g-300px.jpg';
 // import goldImage575 from './575g-300px.jpg';
 // import goldImage275 from './275g-300px.jpg';
 
+
+/**
+ * @module gold/gold-shop
+ */
+
+
+/**
+ * Reindeniza a página Gold
+ * @param {object} props.gold-shop
+ *
+ */
+
 function GoldShop(props) {
 
     const fillOffersTable = (goldOffers) => {
