@@ -19,6 +19,8 @@ import Missions from '../card-components/missions/missions'
 import Character from '../card-components/character/character'
 import GoldShop from '../card-components/gold/gold-shop'
 
+import { setCharacter } from '../store/slices/characterSlice'
+
 /**
  * @module main-app/app
  */
@@ -32,9 +34,9 @@ import GoldShop from '../card-components/gold/gold-shop'
 const App = () => {
 
     const characterSelector = useSelector(state => state.character)
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-    const [character, setCharacter] = useState({
+    const [character, setCharacterState] = useState({
         picture: {},
         name: '',
         reputation: 0,
@@ -48,21 +50,21 @@ const App = () => {
         missionArray: [
             {
                 name: 'Sicilian immigrant',
-                description: 'blabla',
+                description: '',
                 xp: 20,
                 cash: 50,
                 time: 3
             },
             {
                 name: 'Fender Ketchup',
-                description: 'blabla',
+                description: '',
                 xp: 10,
                 cash: 10,
                 time: 1
             },
             {
                 name: 'Just business',
-                description: 'blabla',
+                description: '',
                 xp: 15,
                 cash: 30,
                 time: 2
@@ -97,20 +99,23 @@ const App = () => {
     })
 
     useEffect(() => {
-        // fetch('/player-data').then(res => res.json()).then(data => {
-        //     dispatch({
-        //         type: 'SET_CHARACTER',
-        //         picture: data.character.picture,
-        //         name: data.character.name,
-        //         status: data.character.status,
-        //         reputation: data.character.reputation,
-        //         equipament: data.character.equipament,
-        //         inventory: data.character.inventory,
-        //         activeMission: data.character.activeMission
-        //     })
-        // })
-        setCharacter(characterSelector)
-    })
+        fetch('/api/character').then(res => res.json()).then(data => {
+            if(!data) {
+                return
+            }
+            dispatch(setCharacter({
+                type: 'SET_CHARACTER',
+                picture: data.character.picture,
+                name: data.character.name,
+                status: data.character.status,
+                reputation: data.character.reputation,
+                equipament: data.character.equipament,
+                inventory: data.character.inventory,
+                activeMission: data.character.activeMission
+            }))
+        })
+        setCharacterState(characterSelector)
+    }, [])
 
     return (
             <Router>

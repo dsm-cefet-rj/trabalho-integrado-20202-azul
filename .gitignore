@@ -11,7 +11,6 @@ godfather/public/old-structure
 
 # production
 build/
-public/
 
 # misc
 .DS_Store
