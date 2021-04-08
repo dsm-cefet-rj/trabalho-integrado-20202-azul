@@ -2,6 +2,17 @@ import './Character.css';
 import { useSelector, useDispatch } from 'react-redux'
 import { incrementStatus } from '../../store/slices/characterSlice'
 
+/**
+ * @module character/character
+ */
+
+
+/**
+ * Reindeniza a página de personagens
+ * @param {object} props.character
+ *
+ */
+ 
 function Character(props) {
 
 	const character = useSelector(state => state.character)
