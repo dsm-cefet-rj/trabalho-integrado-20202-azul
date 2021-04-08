@@ -1,4 +1,4 @@
-import './Character.css';
+import './Character.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { incrementStatus } from '../../store/slices/characterSlice'
 
@@ -15,16 +15,68 @@ import { incrementStatus } from '../../store/slices/characterSlice'
  
 function Character() {
 
-	const character = useSelector(state => state.character)
+
+	const character = useSelector(aux => aux.character)
 	const dispatch = useDispatch()
 
 	const addStatus = {
-		atk: () => dispatch(incrementStatus({ sts: 'atk' })),
-		res: () => dispatch(incrementStatus({ sts: 'res' })),
-		lck: () => dispatch(incrementStatus({ sts: 'lck' })),
-		rsl: () => dispatch(incrementStatus({ sts: 'rsl' }))
+
+		atk: () => {
+			const status = 'atk'
+			dispatch(incrementStatus({ sts: status }))
+			updateBackend(status)
+		},
+		res: () => {
+			const status = 'res'
+			dispatch(incrementStatus({ sts: status }))
+			updateBackend(status)
+		},
+		lck: () => {
+			const status = 'lck'
+			dispatch(incrementStatus({ sts: status }))
+			updateBackend(status)
+		},
+		rsl: () => {
+			const status = 'rsl'
+			dispatch(incrementStatus({ sts: status }))
+			updateBackend(status)
+		}
 
 	}
+
+	const updateBackend = (sts) => {
+
+		let aux = JSON.parse(JSON.stringify(character))
+		switch (sts) {
+			case 'atk':
+				aux.status.atk++
+				break
+			case 'res':
+				aux.status.res++
+				break
+			case 'lck':
+				aux.status.lck++
+				break
+			case 'rsl':
+				aux.status.rsl++
+				break
+			default:
+				return
+		}
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(aux)
+        }
+        async function submit() {
+            await fetch('/api/update-char', requestOptions)
+        }
+        submit()
+		
+	}
+
+
 
 	return (
 		<>
