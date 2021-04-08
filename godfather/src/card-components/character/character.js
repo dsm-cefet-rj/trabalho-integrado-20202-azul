@@ -13,7 +13,7 @@ import { incrementStatus } from '../../store/slices/characterSlice'
  *
  */
  
-function Character(props) {
+function Character() {
 
 	const character = useSelector(state => state.character)
 	const dispatch = useDispatch()

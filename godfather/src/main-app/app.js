@@ -53,7 +53,7 @@ const App = () => {
             }
             dispatch(setCharacter({
                 type: 'SET_CHARACTER',
-                picture: data.character.picture,
+                // picture: data.character.picture,
                 name: data.character.name,
                 status: data.character.status,
                 reputation: data.character.reputation,
