@@ -1,6 +1,17 @@
 import './Footer.css';
 import teamImg from './the-godfather-logo-300w.png';
 
+/**
+ * @module footer/footer
+ */
+
+
+/**
+ * Reindeniza a página de personagens
+ * @param {object} props.footer
+ *
+ */
+
 function Footer() {
     return (
         <div className="footer">
