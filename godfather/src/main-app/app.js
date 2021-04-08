@@ -46,31 +46,31 @@ const App = () => {
         activeMission: {}
     })
 
-    const [missions, setMissions] = useState({
-        missionArray: [
-            {
-                name: 'Sicilian immigrant',
-                description: '',
-                xp: 20,
-                cash: 50,
-                time: 3
-            },
-            {
-                name: 'Fender Ketchup',
-                description: '',
-                xp: 10,
-                cash: 10,
-                time: 1
-            },
-            {
-                name: 'Just business',
-                description: '',
-                xp: 15,
-                cash: 30,
-                time: 2
-            }
-        ]
-    })
+    // const [missions, setMissions] = useState({
+    //     missionArray: [
+    //         {
+    //             name: 'Sicilian immigrant',
+    //             description: '',
+    //             xp: 20,
+    //             cash: 50,
+    //             time: 3
+    //         },
+    //         {
+    //             name: 'Fender Ketchup',
+    //             description: '',
+    //             xp: 10,
+    //             cash: 10,
+    //             time: 1
+    //         },
+    //         {
+    //             name: 'Just business',
+    //             description: '',
+    //             xp: 15,
+    //             cash: 30,
+    //             time: 2
+    //         }
+    //     ]
+    // })
 
     const [goldOffers, setGoldOffers] = useState({
         offerArray: [
@@ -135,7 +135,7 @@ const App = () => {
                             {/* Your card component goes here */}
                             <Route exact path="/"><Home /></Route>
                             <Route path="/character"><Character /></Route>
-                            <Route path="/missions"><Missions missions={missions} /></Route>
+                            <Route path="/missions"><Missions /></Route>
                             <Route path="/duels"><Duels player={character} /></Route>
                             <Route path="/gold-shop"><GoldShop goldOffers={goldOffers} /></Route>
                         </Switch>

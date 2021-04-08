@@ -1,4 +1,5 @@
 import './Missions.css';
+import { useState, useEffect } from 'react'
 
 /**
  * @module missions/missions
@@ -6,22 +7,32 @@ import './Missions.css';
 
 
 /**
- * Reindeniza a página de missões
- * @param {object} props.missions
+ * Renderiza a página de missões
  *
  */
 
-function Missions (props) {
+function Missions () {
+    const [missionArray, setMissionArray] = useState([])
+
+    useEffect(() => {
+        fetch('/api/missions').then(res => res.json()).then(data => {
+            if(!data && missionArray === data.missionArray) {
+                return
+            }
+            console.log(data)
+            setMissionArray(data.missionList)
+        })
+    }, [])
     
     const missionList = () => {
-        if (props.missions.missionArray === 0) {
+        if (!missionArray) {
+            console.log('No mission array', missionArray)
             return
         }
 
         let array = []
-        let inputMisionArray = props.missions.missionArray
         
-        inputMisionArray.forEach(element => {
+        missionArray.forEach(element => {
             array.push(
                 <button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#mission-details-modal">
                     {element.name}
@@ -31,6 +42,7 @@ function Missions (props) {
 
         return (<div>{array}</div>)
     }
+
 
     return(
         <>
