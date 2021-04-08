@@ -1,5 +1,16 @@
 import './Home.css';
 
+/**
+ * @module home-page/home
+ */
+
+
+/**
+ * Reindeniza a página principal
+ * @param {object} props.home
+ *
+ */
+
 function Home() {
     return (
         <>
