@@ -37,13 +37,33 @@ const App = () => {
     const dispatch = useDispatch()
 
     const [character, setCharacterState] = useState({
-        picture: {},
+        characterId: 0,
+        picture: '',
         name: '',
         reputation: 0,
-        status: [0, 0, 0, 0],
-        equipament: [{}, {}, {}, {}],
-        inventory: [{}, {}, {}, {}, {}, {}, {}, {}],
-        activeMission: {}
+        wins: 0,
+        losses: 0,
+
+        status: {
+            available: 0,
+            atk: 0,
+            res: 0,
+            lck: 0,
+            rsl: 0
+        },
+
+        leveling: {
+            xp: 0,
+            level: 0,
+            upXp: 0
+        },
+
+        activeMission: {
+            missionId: 0,
+            missionStartTime: ''
+        },
+
+        rankId: 0
     })
 
     useEffect(() => {
@@ -53,13 +73,7 @@ const App = () => {
             }
             dispatch(setCharacter({
                 type: 'SET_CHARACTER',
-                // picture: data.character.picture,
-                name: data.character.name,
-                status: data.character.status,
-                reputation: data.character.reputation,
-                equipament: data.character.equipament,
-                inventory: data.character.inventory,
-                activeMission: data.character.activeMission
+                ...data.character
             }))
         })
         setCharacterState(characterSelector)

@@ -25,6 +25,10 @@ const characterSchema = new Schema({
         required: true
     },
     // Status
+    avaliableStatus: {
+        type: Number,
+        required: false
+    },
     atk: {
         type: Number,
         required: true

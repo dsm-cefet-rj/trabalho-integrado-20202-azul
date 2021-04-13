@@ -1,6 +1,7 @@
 import './Character.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { incrementStatus } from '../../store/slices/characterSlice'
+import DefaultCharacterPicture from './mafia-luffy.jpg'
 
 /**
  * @module character/character
@@ -16,27 +17,39 @@ import { incrementStatus } from '../../store/slices/characterSlice'
 function Character() {
 
 
-	const character = useSelector(aux => aux.character)
+	const characterRedux = useSelector(aux => aux.character)
 	const dispatch = useDispatch()
 
 	const addStatus = {
 
 		atk: () => {
+			if (!validStatusUpgrade()) {
+				return
+			}
 			const status = 'atk'
 			dispatch(incrementStatus({ sts: status }))
 			updateBackend(status)
 		},
 		res: () => {
+			if (!validStatusUpgrade()) {
+				return
+			}
 			const status = 'res'
 			dispatch(incrementStatus({ sts: status }))
 			updateBackend(status)
 		},
 		lck: () => {
+			if (!validStatusUpgrade()) {
+				return
+			}
 			const status = 'lck'
 			dispatch(incrementStatus({ sts: status }))
 			updateBackend(status)
 		},
 		rsl: () => {
+			if (!validStatusUpgrade()) {
+				return
+			}
 			const status = 'rsl'
 			dispatch(incrementStatus({ sts: status }))
 			updateBackend(status)
@@ -47,6 +60,7 @@ function Character() {
 	const updateBackend = (sts) => {
 
 		let aux = JSON.parse(JSON.stringify(character))
+		aux.status.available--
 		switch (sts) {
 			case 'atk':
 				aux.status.atk++
@@ -69,6 +83,7 @@ function Character() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(aux)
         }
+		console.log(aux.status)
         async function submit() {
             await fetch('/api/character', requestOptions)
         }
@@ -76,6 +91,19 @@ function Character() {
 		
 	}
 
+	const validStatusUpgrade = () => {
+		if (character.status.available > 0) {
+			return true
+		} else {
+			return false
+		}
+	}
+
+	// Character data processing
+	let character = { ...characterRedux }
+	if (!character.picture) {
+		character.picture = DefaultCharacterPicture
+	}
 
 
 	return (
@@ -90,11 +118,13 @@ function Character() {
 				<div className="row" id="character-info">
 					<div className="col col-lg-7 character-basic-info">
 						<h3 id="character-name"><strong>{character.name}</strong></h3>
-						<img className="img-thumbnail" id="character-img" src={character.picture} alt="Imagem do personagem"></img>
+						<div className="char-picture-box">
+							<img className="img-thumbnail" id="character-img" src={character.picture} alt="Imagem do personagem" />
+						</div>
 
 						{/* LEVEL */}
 						<div id="level-box" className="d-flex justify-content-between">
-							Lv<span id="character-level">15</span>
+							Lv<span id="character-level">{character.leveling.level}</span>
 
 							<div className="d-block w-100">
 								<div className="progress">
@@ -105,11 +135,9 @@ function Character() {
 						</div>
 
 						{/* REPUTATION */}
-{/* 
 						<div id="reputation">
 							<p>Reputation: <span id="character-reputation">{character.reputation}</span> </p>
 						</div>
-*/}
 					</div>
 
 					{/* STATUS */}
@@ -150,74 +178,18 @@ function Character() {
 							<span id="rsl-value">{character.status.rsl} <button id="add-atk" className="status-button btn btn-secondary btn-sm"><i className="fas fa-plus" onClick={addStatus.rsl} ></i></button></span>
 						</div>
 
+						<hr className="status-hr"/>
+						<div className="d-flex justify-content-between sts-row">
+							<p>
+								{/* <i className="fas fa-arrow-up"></i> */}
+								<abbr title="You can add this point to make your character stronger">Points available: </abbr>
+							</p>
+							<span id="avaliable-status-value">{character.status.available}</span>
+						</div>
+
 					</div>
 				</div>
-{/*				<hr/>
 
-				<div id="equipment">
-					<h3><strong>Equipment</strong></h3>
-					<div className="equipament-grid row item-grid">
-						<div className="col">
-							<div className="item-box gun-reserved-equipament-slot">
-							</div>
-						</div>
-						<div className="col">
-							<div className="item-box equipament-item-slot">
-							</div>
-						</div>
-						<div className="col">
-							<div className="item-box equipament-item-slot">
-							</div>
-						</div>
-						<div className="col">
-							<div className="item-box equipament-item-slot">
-							</div>
-						</div>
-					</div>
-				</div>
-				<hr/>
-
-
-				<div id="inventory">
-					<h3><strong>Inventory</strong></h3>
-					<div className="inventory-grid row item-grid">
-						<div className="col">
-							<div className="item-box inventory-item-slot">
-							</div>
-						</div>
-						<div className="col">
-							<div className="item-box inventory-item-slot">
-							</div>
-						</div>
-						<div className="col">
-							<div className="item-box inventory-item-slot">
-							</div>
-						</div>
-						<div className="col">
-							<div className="item-box inventory-item-slot">
-							</div>
-						</div>
-					</div>
-					<div className="inventory-grid row item-grid">
-						<div className="col">
-							<div className="item-box inventory-item-slot">
-							</div>
-						</div>
-						<div className="col">
-							<div className="item-box inventory-item-slot">
-							</div>
-						</div>
-						<div className="col">
-							<div className="item-box inventory-item-slot">
-							</div>
-						</div>
-						<div className="col">
-							<div className="item-box inventory-item-slot">
-							</div>
-						</div>
-					</div>
-				</div> 
-*/}
 			</div>
 		</>
 	);

@@ -31,21 +31,39 @@ mongoose.connect('mongodb://localhost/godfatherdb', {useNewUrlParser: true, useU
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-    // Connected
+    // If the connection was sucessful
     console.log('DB connected')
 });
 
 testChar = {
     character: {
-        picture: {},
-        name: 'Changed',
+        characterId: 0,
+        picture: "https://dd2t.github.io/psw/images/character/character-images/mafia-luffy.jpg",
+        name: 'Backend working',
+        reputation: 1001,
+        wins: 42,
+        losses: 23,
+
         status: {
+            available: 4,
             atk: 21,
             res: 42,
             lck: 666,
             rsl: 23
         },
-        activeMission: {}
+
+        leveling: {
+            xp: 4,
+            level: 1,
+            upXp: 10
+        },
+
+        activeMission: {
+            missionId: 0,
+            missionStartTime: ''
+        },
+
+        rankId: 0
     }
 }
 
