@@ -53,7 +53,7 @@ testChar = {
         },
 
         leveling: {
-            xp: 4,
+            xp: 7,
             level: 1,
             upXp: 10
         },

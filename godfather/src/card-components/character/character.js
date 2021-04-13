@@ -128,7 +128,7 @@ function Character() {
 
 							<div className="d-block w-100">
 								<div className="progress">
-									<div className="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+									<div className="progress-bar" role="progressbar" aria-valuenow={character.leveling.xp.toString()} aria-valuemin="0" aria-valuemax={character.leveling.upXp.toString()} style={{width: (character.leveling.xp/character.leveling.upXp)*100 + '%'}}>
 									</div>
 								</div>
 							</div>
