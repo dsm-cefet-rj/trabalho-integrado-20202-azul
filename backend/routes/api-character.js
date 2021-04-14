@@ -52,15 +52,10 @@ router.get('/', function(req, res, next) {
 
 /* UPDATE */
 router.post('/', function(req, res, next) {
-    // async () => {
-    //     await Character.updateOne({ _id: req.body._id }, { $set: { status: req.body.status } })
-    // }
     Character.updateOne({ _id: req.body._id }, { status: req.body.status}, (err, writeOpResult) => {
-        console.log(req.body.status)
+        // console.log(req.body.status)
     })
     res.json('Status updated')
-    // testChar = { character: req.body }
-    // res.json('ok')
 });
 
 module.exports = router;
