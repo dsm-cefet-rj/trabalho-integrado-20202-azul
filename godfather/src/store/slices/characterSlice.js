@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import donLuffinoImg from '../../card-components/character/mafia-luffy.jpg'
 
 const initialState = {
-    characterId: 0,
+    _id: 0,
     picture: donLuffinoImg,
     name: 'Default name',
     reputation: 0,
@@ -10,7 +10,7 @@ const initialState = {
     losses: 0,
 
     status: {
-        available: 0,
+        pointsAvailable: 0,
         atk: 1,
         res: 1,
         lck: 1,
@@ -39,7 +39,7 @@ const characterSlice = createSlice({
             // const { picture, name, status, activeMission } = action.payload
             let aux = { ...action.payload }
 
-            state.characterId = aux.characterId
+            state._id = aux._id
             state.picture = aux.picture
             state.name = aux.name
             state.reputation = aux.reputation
@@ -52,10 +52,10 @@ const characterSlice = createSlice({
             state.rankId = aux.rankId
         },
         incrementStatus(state, action) {
-            if (state.status.available < 1) {
+            if (state.status.pointsAvailable < 1) {
                 return
             } else {
-                state.status.available--
+                state.status.pointsAvailable--
             }
 
             switch (action.payload.sts) {

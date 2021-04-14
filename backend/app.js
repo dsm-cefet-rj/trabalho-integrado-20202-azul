@@ -45,7 +45,7 @@ testChar = {
         losses: 23,
 
         status: {
-            available: 4,
+            pointsAvailable: 4,
             atk: 21,
             res: 42,
             lck: 666,

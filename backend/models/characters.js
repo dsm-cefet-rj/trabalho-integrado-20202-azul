@@ -1,9 +1,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-
 const characterSchema = new Schema({
-    characterId: {
+    _id: {
         type: Number,
         required: true
     },
@@ -25,47 +24,53 @@ const characterSchema = new Schema({
         required: true
     },
     // Status
-    avaliableStatus: {
-        type: Number,
-        required: false
-    },
-    atk: {
-        type: Number,
-        required: true
-    },
-    res: {
-        type: Number,
-        required: true
-    },
-    lck: {
-        type: Number,
-        required: true
-    },
-    rsl: {
-        type: Number,
-        required: true
+    status: {
+        pointsAvailable: {
+            type: Number,
+            required: false
+        },
+        atk: {
+            type: Number,
+            required: true
+        },
+        res: {
+            type: Number,
+            required: true
+        },
+        lck: {
+            type: Number,
+            required: true
+        },
+        rsl: {
+            type: Number,
+            required: true
+        }
     },
     // Leveling
-    xp: {
-        type: Number,
-        required: true
-    },
-    level: {
-        type: Number,
-        required: true
-    },
-    upXp: {
-        type: Number,
-        required: true
+    leveling: {
+        xp: {
+            type: Number,
+            required: true
+        },
+        level: {
+            type: Number,
+            required: true
+        },
+        upXp: {
+            type: Number,
+            required: true
+        }
     },
     // Mission
-    activiveMissionId: {
-        type: Number,
-        required: false
-    },
-    missionStartTime: {
-        type: Date,
-        required: false
+    activeMission: {
+        missionId: {
+            type: Number,
+            required: false
+        },
+        missionStartTime: {
+            type: Date,
+            required: false
+        }
     },
     // Relations
     rankId: {
@@ -73,3 +78,7 @@ const characterSchema = new Schema({
         required: false
     }
 })
+
+const Character = mongoose.model('character', characterSchema)
+
+module.exports = Character

@@ -60,7 +60,7 @@ function Character() {
 	const updateBackend = (sts) => {
 
 		let aux = JSON.parse(JSON.stringify(character))
-		aux.status.available--
+		aux.status.pointsAvailable--
 		switch (sts) {
 			case 'atk':
 				aux.status.atk++
@@ -83,7 +83,6 @@ function Character() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(aux)
         }
-		console.log(aux.status)
         async function submit() {
             await fetch('/api/character', requestOptions)
         }
@@ -92,7 +91,7 @@ function Character() {
 	}
 
 	const validStatusUpgrade = () => {
-		if (character.status.available > 0) {
+		if (character.status.pointsAvailable > 0) {
 			return true
 		} else {
 			return false
@@ -184,7 +183,7 @@ function Character() {
 								{/* <i className="fas fa-arrow-up"></i> */}
 								<abbr title="You can add this point to make your character stronger">Points available: </abbr>
 							</p>
-							<span id="avaliable-status-value">{character.status.available}</span>
+							<span id="avaliable-status-value">{character.status.pointsAvailable}</span>
 						</div>
 
 					</div>

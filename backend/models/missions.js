@@ -15,6 +15,10 @@ const missionSchema = new Schema({
         type: String,
         required: true
     },
+    sender: {
+        type: String,
+        required: true
+    },
     xp: {
         type: Number,
         required: true
