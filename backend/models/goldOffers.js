@@ -28,3 +28,7 @@ const goldOfferSchema = new Schema({
         required: true
     }
 })
+
+const GoldOffer = mongoose.model('goldOffer', goldOfferSchema)
+
+module.exports = GoldOffer

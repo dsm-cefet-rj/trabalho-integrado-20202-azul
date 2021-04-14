@@ -16,3 +16,7 @@ const rankSchema = new Schema({
         required: true
     }
 })
+
+const rank = mongoose.model('rank', rankSchema)
+
+module.exports = rank
