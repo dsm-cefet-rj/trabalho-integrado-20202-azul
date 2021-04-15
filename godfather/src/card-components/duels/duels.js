@@ -1,6 +1,4 @@
 import './Duels.css';
-import DefaultCharacterPicture from './mafia-luffy.jpg'
-import { useState, useEffect } from 'react'
 
 /**
  * @module duels/duels
@@ -14,17 +12,7 @@ import { useState, useEffect } from 'react'
  */
 
 function Duels(props) {
-	const [character, setCharacter] = useState([])
-	
-	useEffect(() => {
-        fetch('/api/character').then(res => res.json()).then(data => {
-            if(!data) {
-                return
-            } else {
-                setCharacter(data.character)
-            }
-        })
-    }, [])
+	const character = props.player
 
     return (
         <>
