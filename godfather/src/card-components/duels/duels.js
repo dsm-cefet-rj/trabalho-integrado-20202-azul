@@ -55,19 +55,19 @@ function Duels(props) {
             </div>
 
             {/* in queue modal */}
-            <div class="modal fade" id="queue-modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Queue</h5>
+            <div className="modal fade" id="queue-modal" tabIndex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title">Queue</h5>
                         </div>
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <p>Always remember son, after a duel you should leave the gun and take the cannoli!</p>
                         </div>
-                        <div class="modal-footer">
+                        <div className="modal-footer">
                             <p>Queue time: <strong><span className="queue-time">03:14</span></strong> </p>
-                            <button id="cancel-queue-button" type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                            <button id="confirm-combat-button" type="button" class="btn btn-secondary">Fight</button>
+                            <button id="cancel-queue-button" type="button" className="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                            <button id="confirm-combat-button" type="button" className="btn btn-secondary">Fight</button>
                         </div>
                     </div>
                 </div>

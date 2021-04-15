@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './App.css'
 import Logo from '../header-footer/logo/logo'
 import Menu from '../header-footer/menu/menu'
@@ -36,36 +36,6 @@ const App = () => {
     const characterSelector = useSelector(state => state.character)
     const dispatch = useDispatch()
 
-    const [character, setCharacterState] = useState({
-        characterId: 0,
-        picture: '',
-        name: '',
-        reputation: 0,
-        wins: 0,
-        losses: 0,
-
-        status: {
-            available: 0,
-            atk: 0,
-            res: 0,
-            lck: 0,
-            rsl: 0
-        },
-
-        leveling: {
-            xp: 0,
-            level: 0,
-            upXp: 0
-        },
-
-        activeMission: {
-            missionId: 0,
-            missionStartTime: ''
-        },
-
-        rankId: 0
-    })
-
     useEffect(() => {
         fetch('/api/character').then(res => res.json()).then(data => {
             if(!data) {
@@ -76,7 +46,6 @@ const App = () => {
                 ...data.character
             }))
         })
-        setCharacterState(characterSelector)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -99,7 +68,7 @@ const App = () => {
                             <Route exact path="/"><Home /></Route>
                             <Route path="/character"><Character /></Route>
                             <Route path="/missions"><Missions /></Route>
-                            <Route path="/duels"><Duels player={character} /></Route>
+                            <Route path="/duels"><Duels player={characterSelector} /></Route>
                             <Route path="/gold-shop"><GoldShop /></Route>
                         </Switch>
                     </section>

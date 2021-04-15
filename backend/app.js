@@ -53,7 +53,7 @@ db.once('open', function() {
                 losses: 23,
         
                 status: {
-                    pointsAvailable: 4,
+                    pointsAvailable: 1000,
                     atk: 21,
                     res: 42,
                     lck: 999,
