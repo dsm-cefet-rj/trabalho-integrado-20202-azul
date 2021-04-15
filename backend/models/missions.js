@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 
 const missionSchema = new Schema({
-    missionId: {
+    _id: {
         type: Number,
         required: true
     },

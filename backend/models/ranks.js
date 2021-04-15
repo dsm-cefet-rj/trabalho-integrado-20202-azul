@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 
 const rankSchema = new Schema({
-    rankId: {
+    _id: {
         type: Number,
         required: true
     },

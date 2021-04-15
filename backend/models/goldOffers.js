@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 
 const goldOfferSchema = new Schema({
-    goldOfferId: {
+    _id: {
         type: Number,
         required: true
     },
@@ -17,6 +17,10 @@ const goldOfferSchema = new Schema({
     },
     link: {
         type: String,
+        required: true
+    },
+    value: {
+        type: Number,
         required: true
     },
     price: {
