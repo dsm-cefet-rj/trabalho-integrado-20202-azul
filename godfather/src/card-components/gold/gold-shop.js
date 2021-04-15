@@ -1,5 +1,5 @@
 import './Gold-shop.css'
-import goldImage1200 from './1200g-300px.jpg'
+// import goldImage1200 from './1200g-300px.jpg'
 // import goldImage575 from './575g-300px.jpg'
 // import goldImage275 from './275g-300px.jpg'
 import { useState, useEffect } from 'react'
@@ -20,11 +20,11 @@ function GoldShop() {
 
     const [offers, setOffers] = useState([
         {
-            title: '',
+            description: '',
             value: 0,
-            picture: {},
+            picture: '',
             price: 0,
-            bonus: '%'
+            discount: 0
         }
     ])
 
@@ -37,14 +37,16 @@ function GoldShop() {
         let i = 0
 
         offers.forEach(element => {
+            element.price =  element.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+
             trows.push(
                 <tr className="offer" key={i}>
                     <td className="description">
-                        <img src={goldImage1200} alt="Diversas barras de ouro" />
-                        <br />{element.title}<br />{element.value}G
+                        <img src={element.picture} alt="Diversas barras de ouro" />
+                        <br />{element.description}<br />{element.value}G
                     </td>
                     <td className="value">{element.price}</td>
-                    <td className="bonus">{element.bonus}</td>
+                    <td className="bonus">{`${element.discount}%`}</td>
                     <td className="to-buy">
                         <a className="btn btn-primary btn-lg" href="/" role="button" target="_blank" rel="external">
                             Buy<i className="fas fa-external-link-alt"></i>
