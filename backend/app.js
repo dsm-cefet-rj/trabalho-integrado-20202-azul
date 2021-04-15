@@ -10,6 +10,7 @@ var missionRouter = require('./routes/api-missions');
 var goldRouter = require('./routes/api-gold');
 
 const mongoose = require('mongoose');
+const mongoURI = require('./persistent/uri')
 
 
 // Initializing
@@ -21,13 +22,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/akbar', indexRouter);
+app.use('/', indexRouter);
 app.use('/api/character', charRouter);
 app.use('/api/missions', missionRouter);
 app.use('/api/gold', goldRouter);
 
 // Creating database
-mongoose.connect('mongodb://localhost/godfatherdb', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {

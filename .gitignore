@@ -9,8 +9,12 @@ node_modules/
 /coverage
 godfather/public/old-structure
 
+#deploy
+heroku.sh
+
 # production
 build/
+backend/public
 
 # misc
 .DS_Store
