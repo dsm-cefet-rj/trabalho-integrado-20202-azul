@@ -27,6 +27,11 @@ app.use('/api/character', charRouter);
 app.use('/api/missions', missionRouter);
 app.use('/api/gold', goldRouter);
 
+// 404 handler
+app.use(function (req, res, next) {
+    res.status(404).sendFile(path.join(__dirname, 'build', 'index.html'));
+})
+
 // Creating database
 mongoose.connect(mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
 db = mongoose.connection;
