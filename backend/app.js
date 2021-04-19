@@ -1,41 +1,48 @@
 // Imports
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var express = require('express')
+var path = require('path')
+var cookieParser = require('cookie-parser')
+var logger = require('morgan')
 
-var indexRouter = require('./routes/index');
-var charRouter = require('./routes/api-character');
-var missionRouter = require('./routes/api-missions');
-var goldRouter = require('./routes/api-gold');
+var indexRouter = require('./routes/index')
+var charRouter = require('./routes/api-character')
+var missionRouter = require('./routes/api-missions')
+var goldRouter = require('./routes/api-gold')
+var userRouter = require('./routes/api-users')
 
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 const mongoURI = require('./persistent/uri')
 
 
 // Initializing
-var app = express();
+var app = express()
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(logger('dev'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
+app.use(express.static(path.join(__dirname, 'build')))
 
-app.use('/', indexRouter);
-app.use('/api/character', charRouter);
-app.use('/api/missions', missionRouter);
-app.use('/api/gold', goldRouter);
+// Home page
+app.use('/', indexRouter)
+app.use('/api/users', usersRouter)
+
+// login
+
+// Only user area
+app.use('/api/character', charRouter)
+app.use('/api/missions', missionRouter)
+app.use('/api/gold', goldRouter)
 
 // 404 handler
 app.use(function (req, res, next) {
-    res.status(404).sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.status(404).sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
 // Creating database
-mongoose.connect(mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
-db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+mongoose.connect(mongoURI, {useNewUrlParser: true, useUnifiedTopology: true})
+db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function() {
     // If the connection was sucessful show:
     console.log('DB connection was sucessful')
@@ -124,4 +131,4 @@ db.once('open', function() {
 });
 
 
-module.exports = app;
+module.exports = app
