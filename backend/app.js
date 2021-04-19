@@ -11,7 +11,10 @@ var goldRouter = require('./routes/api-gold')
 var userRouter = require('./routes/api-users')
 
 const mongoose = require('mongoose')
-const mongoURI = require('./persistent/uri')
+const config = require('./persistent/config')
+
+var passport = require('passport')
+var authenticate = require('./authenticate')
 
 
 // Initializing
@@ -23,11 +26,12 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'build')))
 
+// passport
+app.use(passport.initialize())
+
 // Home page
 app.use('/', indexRouter)
-app.use('/api/users', usersRouter)
-
-// login
+app.use('/api/users', userRouter)
 
 // Only user area
 app.use('/api/character', charRouter)
@@ -40,7 +44,7 @@ app.use(function (req, res, next) {
 })
 
 // Creating database
-mongoose.connect(mongoURI, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(config.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true})
 db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function() {

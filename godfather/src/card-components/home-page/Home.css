@@ -14,3 +14,23 @@
     text-align: justify;
     margin: auto;
 } */
+
+#sign-up-in ul button {
+    background-color: var(--pastel);
+    border: 1px solid var(--light-brown);
+
+    font-weight: bold;
+}
+
+#sign-up-in ul button:nth-child(2) {
+    border-top: none;
+    /* border-bottom: none; */
+}
+
+/* Modal */
+.modal-content {
+    background-color: var(--light-gray);
+    color: var(--brown);
+    
+    text-align: justify;
+}
