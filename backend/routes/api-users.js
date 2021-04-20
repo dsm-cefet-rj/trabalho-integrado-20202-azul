@@ -8,7 +8,7 @@ const authenticate = require('../authenticate')
 // router.use(bodyParser.json())
 
 router.post('/signup', (req, res, next) => {
-    User.register(new User({ username: req.body.username }),
+    User.register(new User({ username: req.body.username, _id: 0 }),
         req.body.password, (err, user) => {
             if (err) {
                 res.statusCode = 500
@@ -31,7 +31,7 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
     const token = authenticate.getToken({ _id: req.user._id })
     res.statusCode = 200
     res.setHeader('Content-Type', 'application/json')
-    res.json({ token: token, status: 'You are successfully logged in!'})
+    res.json({ token: token, username: req.user.username})
 })
 
 router.get('/logout', (req, res) => {

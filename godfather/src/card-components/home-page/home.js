@@ -1,5 +1,7 @@
 import './Home.css'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../../store/slices/userSlice'
 
 /**
  * @module home-page/home
@@ -13,12 +15,13 @@ import { useState } from 'react'
  */
 
 function Home() {
+    const dispatch = useDispatch()
     const [formData, updateFormData] = useState(0)
 
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({...formData})
+        body: JSON.stringify({ ...formData })
     }
 
     const handleChange = event => {
@@ -40,11 +43,14 @@ function Home() {
 
     const loginSubmitHandler = event => {
         event.preventDefault()
-        // console.log(formData)
-        async function submitLogin() {
-            await fetch('/api/users/login', requestOptions)
-        }
-        submitLogin()
+        fetch('/api/users/login', requestOptions).then(res => res.json()).then(userData => {
+            if (!userData) {
+                return
+            } else {
+                console.log(userData) // Just token for now
+                dispatch(setUser({ username: userData.username, token: userData.token }))
+            }
+        })
     }
 
     return (

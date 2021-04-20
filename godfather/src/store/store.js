@@ -1,7 +1,33 @@
-// import { createStore } from 'redux'
-// import testPlayerImage from '../card-components/character/mafia-luffy.jpg'
 import { configureStore } from '@reduxjs/toolkit'
 import characterReducer from './slices/characterSlice'
+import userReducer from './slices/userSlice'
+
+export default configureStore({
+    reducer: {
+        character: characterReducer,
+        user: userReducer
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // const INITIAL_STATE = {
 //     picture: testPlayerImage,
@@ -35,9 +61,3 @@ import characterReducer from './slices/characterSlice'
 // }
 
 // const store = createStore(reducer)
-
-export default configureStore({
-    reducer: {
-        character: characterReducer
-    }
-})
