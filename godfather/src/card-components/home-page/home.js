@@ -1,8 +1,7 @@
 import './Home.css'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setUser, fetchUserLogin } from '../../store/slices/userSlice'
-
+import { fetchUserLogin, signUpUser } from '../../store/slices/userSlice'
 /**
  * @module home-page/home
  */
@@ -18,11 +17,11 @@ function Home() {
     const dispatch = useDispatch()
     const [formData, updateFormData] = useState(0)
 
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData })
-    }
+    // const requestOptions = {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ ...formData })
+    // }
 
     const handleChange = event => {
         updateFormData({
@@ -33,12 +32,13 @@ function Home() {
 
     const signupSubmitHandler = event => {
         event.preventDefault()
-        alert('You have submitted your registration')
         // console.log(formData)
-        async function submitSignUp() {
-            await fetch('/api/users/signup', requestOptions)
-        }
-        submitSignUp()
+        // async function submitSignUp() {
+        //     await fetch('/api/users/signup', requestOptions)
+        // }
+        // submitSignUp()
+        dispatch(signUpUser({...formData}))
+        alert('You have submitted your registration')
     }
 
     const loginSubmitHandler = event => {
