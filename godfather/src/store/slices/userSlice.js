@@ -1,12 +1,17 @@
-import { createSlice, createAsyncThunk, createEntityAdapter, nanoid } from '@reduxjs/toolkit'
+import { 
+    createSlice,
+    createAsyncThunk, 
+    createEntityAdapter, 
+    nanoid 
+} from '@reduxjs/toolkit'
 import { httpPost } from '../../utils'
-import store from '../store'
 
 const userAdapter = createEntityAdapter({
     selectId: (user) => user.userId
 })
 
-export const fetchUserLogin = createAsyncThunk('stateUser/fetchUserLogin', 
+export const fetchUserLogin = createAsyncThunk(
+    'user/fetchUserLogin', 
     async (formData) => {
         // const reqOpts = {
         //     method: 'POST',
@@ -23,7 +28,8 @@ export const fetchUserLogin = createAsyncThunk('stateUser/fetchUserLogin',
         return {...aux, userId:nanoid()}
     }
 )
-export const signUpUser = createAsyncThunk('stateUser/signUpUser', 
+export const signUpUser = createAsyncThunk(
+    'user/signUpUser', 
     async (formData) => {
         await httpPost('/api/users/signup', formData)
         return
@@ -47,8 +53,8 @@ export const { setUser } = userSlice.actions
 export default userSlice.reducer
 
 // Recovering data
-const globalizedSelectors = userAdapter.getSelectors(state => state.user)
-export const userIds = globalizedSelectors.selectIds(store.getState())
+// const globalizedSelectors = userAdapter.getSelectors(state => state.user)
+// export const userIds = globalizedSelectors.selectIds(store.getState())
 
 
 
