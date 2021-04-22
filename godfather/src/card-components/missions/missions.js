@@ -1,5 +1,7 @@
 import './Missions.css';
 import { useState, useEffect } from 'react'
+import { userSelectors } from '../../store/slices/userSlice'
+import { useSelector } from 'react-redux'
 
 /**
  * @module missions/missions
@@ -11,18 +13,30 @@ import { useState, useEffect } from 'react'
  *
  */
 
-function Missions () {
+function Missions() {
+
+    const user = useSelector(userSelectors.selectAll)
+    console.log(user[0].token)
+    const reqOpts = {
+        method: 'GET',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + user[0].token
+        },
+        // body: JSON.stringify(user[0].token)
+    }
+
     const [missionArray, setMissionArray] = useState([])
     let modalMission = {}
 
     useEffect(() => {
-        fetch('/api/missions').then(res => res.json()).then(data => {
-            if(!data && missionArray === data.missionArray) {
+        fetch('/api/missions', reqOpts).then(res => res.json()).then(data => {
+            if (!data && missionArray === data.missionArray) {
                 return
             }
             setMissionArray(data.missionList)
         })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const fillModalMission = (element) => {
@@ -32,7 +46,7 @@ function Missions () {
         const zeroPad = (num, places) => String(num).padStart(places, '0')
         modalMission.time = zeroPad(modalMission.time, 2)
     }
-    
+
     const missionList = () => {
         if (!missionArray) {
             return
@@ -41,9 +55,9 @@ function Missions () {
         let array = []
         missionArray.forEach(element => {
             array.push(
-				<button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#mission-details-modal" key={element._id} onClick={fillModalMission(element)}>
-					{element.name}
-				</button>
+                <button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#mission-details-modal" key={element._id} onClick={fillModalMission(element)}>
+                    {element.name}
+                </button>
             )
         })
 
@@ -51,7 +65,7 @@ function Missions () {
     }
 
 
-    return(
+    return (
         <>
             <div className="card-title">
                 <h2 className="display-6">Missions</h2>
@@ -62,7 +76,7 @@ function Missions () {
                 <div className="row">
                     <picture className="col">
                         <source media="(max-width: 999px)" srcSet={process.env.PUBLIC_URL + '/images/cards/missions/mailbox-200w.jpg'} />
-                            <source media="(min-width: 1000px)" srcSet={process.env.PUBLIC_URL + '/images/cards/missions/mailbox-600w.jpg'} />
+                        <source media="(min-width: 1000px)" srcSet={process.env.PUBLIC_URL + '/images/cards/missions/mailbox-600w.jpg'} />
                         <img id="mailbox-img" className="img-fluid" src={process.env.PUBLIC_URL + '/images/cards/missions/mailbox-200w.jpg'} alt="Foto de uma mailbox" />
                     </picture>
 
@@ -116,43 +130,43 @@ function Missions () {
                     </div>
                 </div>
             </div>
-			
+
             {/* Accepting mission modal */}
-                {/* Modal */}
-                <div className="modal fade" id="mission-details-modal" tabIndex="-1">
-                    <div className="modal-dialog modal-dialog-centered">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="modal-mission-name">{modalMission.name}</h5>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div className="modal-body">
-                                <p id="modal-mission-description">
-                                    {modalMission.description}
-                                </p>
-                                <p id="modal-mission-sender" className="text-end">
-                                    {modalMission.sender}
-                                </p>
-                                <div id="modal-mission-rewards" className="row">
-                                    <div className="col">
-                                        <p>Rewards: </p>
+            {/* Modal */}
+            <div className="modal fade" id="mission-details-modal" tabIndex="-1">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="modal-mission-name">{modalMission.name}</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <p id="modal-mission-description">
+                                {modalMission.description}
+                            </p>
+                            <p id="modal-mission-sender" className="text-end">
+                                {modalMission.sender}
+                            </p>
+                            <div id="modal-mission-rewards" className="row">
+                                <div className="col">
+                                    <p>Rewards: </p>
+                                </div>
+                                <div className="col" id="xp-reward">
+                                    <span>{modalMission.xp}</span> XP
                                     </div>
-                                    <div className="col" id="xp-reward">
-                                        <span>{modalMission.xp}</span> XP
-                                    </div>
-                                    {/* <div className="col" id="money-reward">
+                                {/* <div className="col" id="money-reward">
                                         $ <span>50</span>
                                     </div> */}
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <p>Time: {modalMission.time}:00</p>
-                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-success">Combat</button>
                             </div>
                         </div>
+                        <div className="modal-footer">
+                            <p>Time: {modalMission.time}:00</p>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-success">Combat</button>
+                        </div>
                     </div>
-               </div>
+                </div>
+            </div>
         </>
     );
 }

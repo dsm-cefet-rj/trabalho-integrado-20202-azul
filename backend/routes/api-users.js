@@ -28,8 +28,6 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
 
-    // console.log(req.user) The db user
-
     const token = authenticate.getToken({ _id: req.user._id })
     res.statusCode = 200
     res.setHeader('Content-Type', 'application/json')

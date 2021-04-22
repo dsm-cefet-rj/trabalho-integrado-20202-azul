@@ -53,7 +53,7 @@ export const { setUser } = userSlice.actions
 export default userSlice.reducer
 
 // Recovering data
-// const globalizedSelectors = userAdapter.getSelectors(state => state.user)
+export const userSelectors = userAdapter.getSelectors((state) => state.user)
 // export const userIds = globalizedSelectors.selectIds(store.getState())
 
 

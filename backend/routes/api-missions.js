@@ -4,7 +4,7 @@ const Mission = require('../models/missions')
 const authenticate = require('../authenticate')
 
 /* GET users listing. */
-router.get('/',authenticate.verifyUser , function(req, res, next) {
+router.route('/').get( authenticate.verifyUser, (req, res, next) => {
 
     Mission.find((err, missions) => {
         res.json({ missionList: missions })
