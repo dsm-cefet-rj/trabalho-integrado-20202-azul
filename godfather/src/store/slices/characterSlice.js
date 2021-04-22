@@ -31,6 +31,15 @@ const initialState = {
     rankId: 0
 }
 
+export const fetchProjetos = createAsyncThunk('projetos/fetchProjetos', 
+  async() =>  {
+    return await (await fetch('http://localhost:3000/characters')).json();
+});
+
+function fullfillProjetosReducer(projetosState, projetosFetched) {
+    return projetosFetched;
+}
+
 const characterSlice = createSlice({
     name: 'Character',
     initialState,
@@ -50,6 +59,9 @@ const characterSlice = createSlice({
             state.leveling = aux.leveling
             state.activeMission = aux.activeMission
             state.rankId = aux.rankId
+        },
+        extraReducers: {
+            [fetchProjetos.fulfilled]:(state, action) => fullfillProjetosReducer(state = action.payload)
         },
         incrementStatus(state, action) {
             if (state.status.pointsAvailable < 1) {
