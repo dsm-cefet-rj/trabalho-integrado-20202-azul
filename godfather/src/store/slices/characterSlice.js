@@ -13,6 +13,15 @@ const initialState = {
     activeMission: {}
 }
 
+export const fetchProjetos = createAsyncThunk('projetos/fetchProjetos', 
+  async() =>  {
+    return await (await fetch('http://localhost:3000/characters')).json();
+});
+
+function fullfillProjetosReducer(projetosState, projetosFetched) {
+    return projetosFetched;
+}
+
 const characterSlice = createSlice({
     name: 'Character',
     initialState,
@@ -23,6 +32,9 @@ const characterSlice = createSlice({
             state.name = name
             state.status = status
             state.activeMission = activeMission
+        },
+        extraReducers: {
+            [fetchProjetos.fulfilled]:(state, action) => fullfillProjetosReducer(state = action.payload)
         },
         incrementStatus(state, action) {
             switch (action.payload.sts) {
