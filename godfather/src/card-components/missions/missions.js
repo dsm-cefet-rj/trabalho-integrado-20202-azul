@@ -22,8 +22,7 @@ function Missions() {
         headers: { 
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + user[0].token
-        },
-        // body: JSON.stringify(user[0].token)
+        }
     }
 
     const [missionArray, setMissionArray] = useState([])

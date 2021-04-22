@@ -1,7 +1,10 @@
 import './Home.css'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { fetchUserLogin, signUpUser } from '../../store/slices/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { 
+    fetchUserLogin, 
+    signUpUser,
+} from '../../store/slices/userSlice'
 /**
  * @module home-page/home
  */
@@ -15,13 +18,8 @@ import { fetchUserLogin, signUpUser } from '../../store/slices/userSlice'
 
 function Home() {
     const dispatch = useDispatch()
+    const userLogged = useSelector(state => state.user.logged)
     const [formData, updateFormData] = useState(0)
-
-    // const requestOptions = {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ ...formData })
-    // }
 
     const handleChange = event => {
         updateFormData({
@@ -32,37 +30,30 @@ function Home() {
 
     const signupSubmitHandler = event => {
         event.preventDefault()
-        // console.log(formData)
-        // async function submitSignUp() {
-        //     await fetch('/api/users/signup', requestOptions)
-        // }
-        // submitSignUp()
+
         dispatch(signUpUser({...formData}))
         alert('You have submitted your registration')
     }
 
-    const loginSubmitHandler = event => {
+    const loginSubmitHandler = (event) => {
         event.preventDefault()
-        // fetch('/api/users/login', requestOptions).then(res => res.json()).then(userData => {
-        //     if (!userData) {
-        //         return
-        //     } else {
-        //         console.log(userData) // Just token for now
-        //         dispatch(setUser({ ...userData }))
-        //     }
-        // })
+
+        if (userLogged) {
+            alert('You are already logged in')
+            return
+        }
         dispatch(fetchUserLogin({...formData}))
     }
 
     return (
         <>
             <div className="card-title">
-                <h2 className="display-6">Lorem ipsum</h2>
+                <h2 className="display-6">I'm Gonna Make You An Offer You Can't Refuse</h2>
             </div>
             <hr />
             <div className="card-content">
                 <div id="sign-up-in">
-                    <ul>
+                    <ul className="text-center">
                         <button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#signup-modal" key={0} >
                             Sign Up
                         </button>
@@ -83,12 +74,6 @@ function Home() {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            {/* <p id="modal-mission-description">
-                                {modalMission.description}
-                            </p>
-                            <p id="modal-mission-sender" className="text-end">
-                                {modalMission.sender}
-                            </p> */}
                             <form onSubmit={signupSubmitHandler}>
                                 <fieldset>
                                     <label>

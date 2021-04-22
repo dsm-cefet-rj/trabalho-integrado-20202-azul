@@ -15,11 +15,17 @@
     margin: auto;
 } */
 
+#sign-up-in {
+    margin: 0 0 0 -2rem;
+}
+
 #sign-up-in ul button {
     background-color: var(--pastel);
     border: 1px solid var(--light-brown);
 
     font-weight: bold;
+    /* margin: 0;
+    padding: 0rem; */
 }
 
 #sign-up-in ul button:nth-child(2) {
