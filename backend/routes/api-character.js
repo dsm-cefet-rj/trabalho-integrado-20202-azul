@@ -1,10 +1,11 @@
 var express = require('express')
 var router = express.Router()
 const Character = require('../models/characters')
+const authenticate = require('../authenticate')
 
 
 /* GET */
-router.get('/', function(req, res, next) {
+router.get('/', authenticate.verifyUser, function(req, res, next) {
     Character.findOne({ _id: 0 }, (err, character) => {
         res.json({character: character})
     })
