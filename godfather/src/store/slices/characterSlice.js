@@ -15,7 +15,7 @@ const initialState = {
 
 export const fetchProjetos = createAsyncThunk('projetos/fetchProjetos', 
   async() =>  {
-    return await (await fetch('http://localhost:3000/characters')).json();
+    return await (await fetch('http://localhost:5000/characters')).json();
 });
 
 function fullfillProjetosReducer(projetosState, projetosFetched) {
