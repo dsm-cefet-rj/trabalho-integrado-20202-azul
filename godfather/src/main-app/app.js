@@ -5,6 +5,7 @@ import Menu from '../header-footer/menu/menu'
 import Footer from '../header-footer/footer/footer'
 
 import { useSelector, useDispatch } from 'react-redux'
+import { userSelectors } from '../store/slices/userSlice'
 
 import {
     BrowserRouter as Router,
@@ -19,7 +20,7 @@ import Missions from '../card-components/missions/missions'
 import Character from '../card-components/character/character'
 import GoldShop from '../card-components/gold/gold-shop'
 
-import { setCharacter } from '../store/slices/characterSlice'
+import { fetchCharacter, characterSelectors } from '../store/slices/characterSlice'
 
 /**
  * @module main-app/app
@@ -33,21 +34,28 @@ import { setCharacter } from '../store/slices/characterSlice'
 
 const App = () => {
 
-    const characterSelector = useSelector(state => state.character)
+    const characterSelector = useSelector(characterSelectors.selectAll)
     const dispatch = useDispatch()
 
+    const userIds = useSelector(userSelectors.selectIds)
+    const user = useSelector((state) => userSelectors.selectById(state, userIds))
+
     useEffect(() => {
-        fetch('/api/character').then(res => res.json()).then(data => {
-            if(!data) {
-                return
-            }
-            dispatch(setCharacter({
-                type: 'SET_CHARACTER',
-                ...data.character
-            }))
-        })
+        // fetch('/api/character').then(res => res.json()).then(data => {
+        //     if(!data) {
+        //         return
+        //     }
+        //     dispatch(setCharacter({
+        //         type: 'SET_CHARACTER',
+        //         ...data.character
+        //     }))
+        // })
+        if (user) {
+            dispatch(fetchCharacter(user.token))
+        }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [user])
 
     return (
             <Router>
@@ -68,7 +76,7 @@ const App = () => {
                             <Route exact path="/"><Home /></Route>
                             <Route path="/character"><Character /></Route>
                             <Route path="/missions"><Missions /></Route>
-                            <Route path="/duels"><Duels player={characterSelector} /></Route>
+                            <Route path="/duels"><Duels player={characterSelector[0]} /></Route>
                             <Route path="/gold-shop"><GoldShop /></Route>
                         </Switch>
                     </section>

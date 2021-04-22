@@ -1,4 +1,9 @@
-import './Duels.css';
+import './Duels.css'
+import { useSelector } from 'react-redux'
+import {  
+	characterSelectors 
+} from '../../store/slices/characterSlice'
+import { userSelectors } from '../../store/slices/userSlice'
 
 /**
  * @module duels/duels
@@ -12,7 +17,12 @@ import './Duels.css';
  */
 
 function Duels(props) {
-	const character = props.player
+	let character = props.player
+    const user = useSelector(userSelectors.selectIds)
+    const characterRedux = useSelector(characterSelectors.selectAll)
+    if (user) {
+        character = characterRedux[0]
+    }
 
     return (
         <>

@@ -1,7 +1,11 @@
 import './Character.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { incrementStatus } from '../../store/slices/characterSlice'
+import { 
+	incrementStatus, 
+	characterSelectors 
+} from '../../store/slices/characterSlice'
 import DefaultCharacterPicture from './mafia-luffy.jpg'
+import { userSelectors } from '../../store/slices/userSlice'
 
 /**
  * @module character/character
@@ -17,7 +21,10 @@ import DefaultCharacterPicture from './mafia-luffy.jpg'
 function Character() {
 
 
-	const characterRedux = useSelector(aux => aux.character)
+	const userIds = useSelector(userSelectors.selectIds)
+    const user = useSelector((state) => userSelectors.selectById(state, userIds))
+
+	const characterArray = useSelector(characterSelectors.selectAll)
 	const dispatch = useDispatch()
 
 	const addStatus = {
@@ -96,6 +103,40 @@ function Character() {
 		} else {
 			return false
 		}
+	}
+
+	// character redux
+	let characterRedux = {
+		    _id: 0,
+		    picture: 'https://dd2t.github.io/psw/images/character/character-images/mafia-luffy.jpg',
+		    name: 'Default name',
+		    reputation: 0,
+		    wins: 0,
+		    losses: 0,
+		
+		    status: {
+		        pointsAvailable: 0,
+		        atk: 1,
+		        res: 1,
+		        lck: 1,
+		        rsl: 1
+		    },
+		
+		    leveling: {
+		        xp: 0,
+		        level: 1,
+		        upXp: 10
+		    },
+		
+		    activeMission: {
+		        missionId: 0,
+		        missionStartTime: ''
+		    },
+		
+		    rankId: 0
+	}
+	if (user) {
+		characterRedux = characterArray[0]
 	}
 
 	// Character data processing
