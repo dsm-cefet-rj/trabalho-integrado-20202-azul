@@ -1,7 +1,8 @@
 import './Missions.css';
 import { useState, useEffect } from 'react'
 import { userSelectors } from '../../store/slices/userSlice'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchMissions, missionSelectors } from '../../store/slices/missionSlice'
 
 /**
  * @module missions/missions
@@ -15,28 +16,25 @@ import { useSelector } from 'react-redux'
 
 function Missions() {
 
-    const user = useSelector(userSelectors.selectAll)
-    console.log(user[0].token)
-    const reqOpts = {
-        method: 'GET',
-        headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + user[0].token
-        }
-    }
+    const userIds = useSelector(userSelectors.selectIds)
+    const user = useSelector((state) => userSelectors.selectById(state, userIds))
 
     const [missionArray, setMissionArray] = useState([])
     let modalMission = {}
 
+    const dispatch = useDispatch()
+    const missionsFromSelector = useSelector(missionSelectors.selectAll)
     useEffect(() => {
-        fetch('/api/missions', reqOpts).then(res => res.json()).then(data => {
-            if (!data && missionArray === data.missionArray) {
-                return
-            }
-            setMissionArray(data.missionList)
-        })
+        if (user) {
+            dispatch(fetchMissions(user.token))
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    // If there is changes in store, update
+    if (missionArray !== missionsFromSelector) {
+        setMissionArray(missionsFromSelector)
+    }
 
     const fillModalMission = (element) => {
         modalMission = { ...element }
