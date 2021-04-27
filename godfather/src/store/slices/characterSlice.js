@@ -11,9 +11,9 @@ const characterAdapter = createEntityAdapter({
 
 export const fetchCharacter = createAsyncThunk(
     'character/fetchCharacter',
-    async (Authtoken) => {
-        const aux = await httpGet('/api/character', { headers: {Authorization: 'Bearer ' + Authtoken} })
-        console.log(aux.character)
+    async (userID, { getState }) => {
+        const jwt = getState().user.entities[userID].token
+        const aux = await httpGet('/api/character', { headers: {Authorization: 'Bearer ' + jwt} })
         return aux.character
     }
 )

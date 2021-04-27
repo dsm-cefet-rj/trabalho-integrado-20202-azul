@@ -37,24 +37,16 @@ const App = () => {
     const characterSelector = useSelector(characterSelectors.selectAll)
     const dispatch = useDispatch()
 
-    const userIds = useSelector(userSelectors.selectIds)
-    const user = useSelector((state) => userSelectors.selectById(state, userIds))
+    const userIdArray = useSelector(userSelectors.selectIds)
+    const user = useSelector((state) => userSelectors.selectById(state, userIdArray))
+    let userId = 0
 
     useEffect(() => {
-        // fetch('/api/character').then(res => res.json()).then(data => {
-        //     if(!data) {
-        //         return
-        //     }
-        //     dispatch(setCharacter({
-        //         type: 'SET_CHARACTER',
-        //         ...data.character
-        //     }))
-        // })
         if (user) {
-            dispatch(fetchCharacter(user.token))
+            dispatch(fetchCharacter(user.userId))
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            userId = user.userId
         }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
 
     return (
@@ -74,8 +66,8 @@ const App = () => {
                         <Switch>
                             {/* Your card component goes here */}
                             <Route exact path="/"><Home /></Route>
-                            <Route path="/character"><Character /></Route>
-                            <Route path="/missions"><Missions /></Route>
+                            <Route path="/character"><Character userId={userId} /></Route>
+                            <Route path="/missions"><Missions userId={userId} /></Route>
                             <Route path="/duels"><Duels player={characterSelector[0]} /></Route>
                             <Route path="/gold-shop"><GoldShop /></Route>
                         </Switch>
