@@ -1,20 +1,3 @@
-/* .card-title, .card-content {
-    font-family: 'Castoro', serif;
-}
-
-.card-title, .display-6 {
-    font-weight: bold;
-    margin-top: 0.5rem;
-    margin-bottom: 0;
-}
-
-.card-content {
-    font-size: 1.2rem;
-    max-width: fit-content;
-    text-align: justify;
-    margin: auto;
-} */
-
 #sign-up-in {
     margin: 0 0 0 -2rem;
 }
@@ -24,13 +7,10 @@
     border: 1px solid var(--light-brown);
 
     font-weight: bold;
-    /* margin: 0;
-    padding: 0rem; */
 }
 
 #sign-up-in ul button:nth-child(2) {
     border-top: none;
-    /* border-bottom: none; */
 }
 
 /* Modal */

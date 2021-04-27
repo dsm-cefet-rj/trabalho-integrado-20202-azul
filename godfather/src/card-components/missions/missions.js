@@ -107,9 +107,6 @@ function Missions() {
                         <div className="col" id="xp-reward">
                             <strong><span>20</span></strong> XP
                         </div>
-                        {/* <div className="col" id="money-reward">
-                            $ <strong><span>50</span></strong>
-                        </div> */}
                     </div>
 
                     <div id="ac-actions">
@@ -151,9 +148,6 @@ function Missions() {
                                 <div className="col" id="xp-reward">
                                     <span>{modalMission.xp}</span> XP
                                     </div>
-                                {/* <div className="col" id="money-reward">
-                                        $ <span>50</span>
-                                    </div> */}
                             </div>
                         </div>
                         <div className="modal-footer">

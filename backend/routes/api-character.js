@@ -14,7 +14,7 @@ router.get('/', authenticate.verifyUser, function(req, res, next) {
 /* UPDATE */
 router.post('/', function(req, res, next) {
     Character.updateOne({ _id: req.body._id }, { status: req.body.status}, (err, writeOpResult) => {
-        // console.log(req.body.status)
+        // Nothing...
     })
     res.json('Status updated')
 });

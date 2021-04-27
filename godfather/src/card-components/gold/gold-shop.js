@@ -1,7 +1,4 @@
 import './Gold-shop.css'
-// import goldImage1200 from './1200g-300px.jpg'
-// import goldImage575 from './575g-300px.jpg'
-// import goldImage275 from './275g-300px.jpg'
 import { useState, useEffect } from 'react'
 
 

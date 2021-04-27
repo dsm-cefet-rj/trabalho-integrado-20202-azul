@@ -6,7 +6,6 @@ const characterSchema = new Schema({
         type: Number,
         required: true
     },
-    // Default data
     name: {
         type: String,
         required: true
@@ -23,7 +22,6 @@ const characterSchema = new Schema({
         type: Number,
         required: true
     },
-    // Status
     status: {
         pointsAvailable: {
             type: Number,
@@ -46,7 +44,6 @@ const characterSchema = new Schema({
             required: true
         }
     },
-    // Leveling
     leveling: {
         xp: {
             type: Number,
@@ -61,7 +58,6 @@ const characterSchema = new Schema({
             required: true
         }
     },
-    // Mission
     activeMission: {
         missionId: {
             type: Number,
@@ -72,7 +68,6 @@ const characterSchema = new Schema({
             required: false
         }
     },
-    // Relations
     rankId: {
         type: Number,
         required: false

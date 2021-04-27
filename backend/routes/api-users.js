@@ -4,9 +4,6 @@ const User = require('../models/users')
 const passport = require('passport')
 const authenticate = require('../authenticate')
 
-// const bodyParser = require('body-parser')
-// router.use(bodyParser.json())
-
 router.post('/signup', (req, res, next) => {
     User.register(new User({ username: req.body.username }),
         req.body.password, (err, user) => {

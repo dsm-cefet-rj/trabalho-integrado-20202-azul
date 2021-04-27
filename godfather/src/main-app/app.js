@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import './App.css'
 import Logo from '../header-footer/logo/logo'
 import Menu from '../header-footer/menu/menu'
 import Footer from '../header-footer/footer/footer'
