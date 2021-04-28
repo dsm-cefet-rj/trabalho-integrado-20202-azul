@@ -21,8 +21,8 @@ import { userSelectors } from '../../store/slices/userSlice'
 function Character() {
 
 
-	const userIds = useSelector(userSelectors.selectIds)
-    const user = useSelector((state) => userSelectors.selectById(state, userIds))
+	const userIdArray = useSelector(userSelectors.selectIds)
+    const user = useSelector((state) => userSelectors.selectById(state, userIdArray))
 
 	const characterArray = useSelector(characterSelectors.selectAll)
 	const dispatch = useDispatch()
@@ -30,71 +30,22 @@ function Character() {
 	const addStatus = {
 
 		atk: () => {
-			if (!validStatusUpgrade()) {
-				return
-			}
-			const status = 'atk'
-			dispatch(incrementStatus({ sts: status }))
-			updateBackend(status)
+			if (!validStatusUpgrade()) return
+			dispatch(incrementStatus({ userID: user.userId, statusToIncrement: 'atk' }))
 		},
 		res: () => {
-			if (!validStatusUpgrade()) {
-				return
-			}
-			const status = 'res'
-			dispatch(incrementStatus({ sts: status }))
-			updateBackend(status)
+			if (!validStatusUpgrade()) return
+			dispatch(incrementStatus({ userID: user.userId, statusToIncrement: 'res' }))
 		},
 		lck: () => {
-			if (!validStatusUpgrade()) {
-				return
-			}
-			const status = 'lck'
-			dispatch(incrementStatus({ sts: status }))
-			updateBackend(status)
+			if (!validStatusUpgrade()) return
+			dispatch(incrementStatus({ userID: user.userId, statusToIncrement: 'lck' }))
 		},
 		rsl: () => {
-			if (!validStatusUpgrade()) {
-				return
-			}
-			const status = 'rsl'
-			dispatch(incrementStatus({ sts: status }))
-			updateBackend(status)
+			if (!validStatusUpgrade()) return
+			dispatch(incrementStatus({ userID: user.userId, statusToIncrement: 'rsl' }))
 		}
 
-	}
-
-	const updateBackend = (sts) => {
-
-		let aux = JSON.parse(JSON.stringify(character))
-		aux.status.pointsAvailable--
-		switch (sts) {
-			case 'atk':
-				aux.status.atk++
-				break
-			case 'res':
-				aux.status.res++
-				break
-			case 'lck':
-				aux.status.lck++
-				break
-			case 'rsl':
-				aux.status.rsl++
-				break
-			default:
-				return
-		}
-
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(aux)
-        }
-        async function submit() {
-            await fetch('/api/character', requestOptions)
-        }
-        submit()
-		
 	}
 
 	const validStatusUpgrade = () => {
@@ -135,6 +86,7 @@ function Character() {
 		
 		    rankId: 0
 	}
+
 	if (user) {
 		characterRedux = characterArray[0]
 	}

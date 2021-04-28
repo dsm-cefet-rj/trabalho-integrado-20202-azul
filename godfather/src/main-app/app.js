@@ -50,14 +50,13 @@ const App = () => {
 
     return (
             <Router>
-                {/* Logo / Menu*/}
+                {/* Logo and Menu */}
                 <header>
                     <section id="logo">
                         <Logo />
                     </section>
-                    <section id="menu">
-                        <Menu />
-                    </section>
+                    {/* Menu (only for authenticated users) */}
+                    {user?<section id="menu"><Menu /></section>:<></>}
                 </header>
                 {/* Card */}
                 <main>

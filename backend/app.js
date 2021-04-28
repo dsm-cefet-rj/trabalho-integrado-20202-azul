@@ -43,7 +43,7 @@ app.use(function (req, res, next) {
 })
 
 // Creating database
-mongoose.connect(config.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function() {
