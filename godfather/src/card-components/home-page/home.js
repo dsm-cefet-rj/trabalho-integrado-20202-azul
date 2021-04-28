@@ -1,10 +1,8 @@
 import './Home.css'
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { 
-    fetchUserLogin, 
-    signUpUser,
-} from '../../store/slices/userSlice'
+import { useSelector } from 'react-redux'
+import LoginModal from './modals/loginModal'
+import SignUpModal from './modals/signUpModal'
+
 /**
  * @module home-page/home
  */
@@ -17,33 +15,11 @@ import {
  */
 
 function Home() {
-    const dispatch = useDispatch()
     const userLogged = useSelector(state => state.user.logged)
-    const [formData, updateFormData] = useState(0)
 
-    const handleChange = event => {
-        updateFormData({
-            ...formData,
-            [event.target.name]: event.target.value
-        })
-    }
-
-    const signupSubmitHandler = event => {
-        event.preventDefault()
-
-        dispatch(signUpUser({...formData}))
-        alert('You have submitted your registration')
-    }
-
-    const loginSubmitHandler = (event) => {
-        event.preventDefault()
-
-        if (userLogged) {
-            alert('You are already logged in')
-            return
-        }
-        dispatch(fetchUserLogin({...formData}))
-    }
+    // const verifyUser = () => {
+    //     if (userLogged) alert('You are already logged in')
+    // }
 
     return (
         <>
@@ -53,6 +29,13 @@ function Home() {
             <hr />
             <div className="card-content">
                 <div id="sign-up-in">
+                    {userLogged?
+                    <ul className="text-center">
+                        <button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#" key={0} >
+                            Log Out
+                        </button>
+                    </ul>
+                    :
                     <ul className="text-center">
                         <button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#signup-modal" key={0} >
                             Sign Up
@@ -60,7 +43,7 @@ function Home() {
                         <button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#login-modal" key={1} >
                             Login
                         </button>
-                    </ul>
+                    </ul>}
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur culpa expedita laborum optio, facere cupiditate deleniti id, ducimus praesentium aliquam, at a neque nam doloribus quibusdam sit dolores veniam consectetur.</p>
             </div>
@@ -73,22 +56,7 @@ function Home() {
                             <h5 className="modal-title" id="modal-mission-name">Sign Up</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div className="modal-body">
-                            <form onSubmit={signupSubmitHandler}>
-                                <fieldset>
-                                    <label>
-                                        <p>Username: </p>
-                                        <input name="username" onChange={handleChange} />
-                                        <p>Password: </p>
-                                        <input name="password" onChange={handleChange} />
-                                    </label>
-                                </fieldset>
-                            </form>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" className="btn btn-success" data-bs-dismiss="modal" onClick={signupSubmitHandler} >Register</button>
-                        </div>
+                        <SignUpModal />
                     </div>
                 </div>
             </div>
@@ -101,22 +69,7 @@ function Home() {
                             <h5 className="modal-title" id="modal-mission-name">Login</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div className="modal-body">
-                            <form onSubmit={loginSubmitHandler}>
-                                <fieldset>
-                                    <label>
-                                        <p>Username:</p>
-                                        <input name="username" onChange={handleChange} />
-                                        <p>Password: </p>
-                                        <input name="password" onChange={handleChange} />
-                                    </label>
-                                </fieldset>
-                            </form>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" className="btn btn-success" data-bs-dismiss="modal" onClick={loginSubmitHandler} >Login</button>
-                        </div>
+                        <LoginModal />
                     </div>
                 </div>
             </div>
