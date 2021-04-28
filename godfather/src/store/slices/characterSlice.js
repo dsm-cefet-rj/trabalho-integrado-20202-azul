@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import donLuffinoImg from '../../card-components/character/mafia-luffy.jpg'
 
 const initialState = {
