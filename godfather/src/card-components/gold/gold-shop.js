@@ -59,7 +59,7 @@ function GoldShop() {
     }
 
     useEffect(() => {
-        fetch('/api/gold').then(res => res.json()).then(data => {
+        fetch('http://localhost:5000/goldOffers').then(res => res.json()).then(data => {
             if(!data) {
                 return
             } else {

@@ -70,7 +70,7 @@ function Character() {
             body: JSON.stringify(aux)
         }
         async function submit() {
-            await fetch('/api/update-char', requestOptions)
+            await fetch('http://localhost:5000/characters', requestOptions)
         }
         submit()
 		

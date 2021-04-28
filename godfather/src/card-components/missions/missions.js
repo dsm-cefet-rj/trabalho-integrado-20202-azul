@@ -15,7 +15,7 @@ function Missions () {
     const [missionArray, setMissionArray] = useState([])
 
     useEffect(() => {
-        fetch('/api/missions').then(res => res.json()).then(data => {
+        fetch('http://localhost:5000/missions').then(res => res.json()).then(data => {
             if(!data && missionArray === data.missionArray) {
                 return
             }

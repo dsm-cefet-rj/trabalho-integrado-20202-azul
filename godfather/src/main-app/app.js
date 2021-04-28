@@ -47,14 +47,14 @@ const App = () => {
     })
 
     useEffect(() => {
-        fetch('/api/character').then(res => res.json()).then(data => {
+        fetch('http://localhost:5000/characters').then(res => res.json()).then(data => {
             if(!data) {
                 return
             }
             dispatch(setCharacter({
                 type: 'SET_CHARACTER',
-                // picture: data.character.picture,
-                name: data.character.name,
+                picture: data.character.picture,
+				name: data.character.name,
                 status: data.character.status,
                 reputation: data.character.reputation,
                 equipament: data.character.equipament,
