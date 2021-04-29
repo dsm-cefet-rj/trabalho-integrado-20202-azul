@@ -61,6 +61,7 @@ const characterSchema = new Schema({
     activeMission: {
         missionId: {
             type: Number,
+            ref: 'mission',
             required: false
         },
         missionStartTime: {

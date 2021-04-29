@@ -63,7 +63,7 @@ const App = () => {
                     <section id="card">
                         <Switch>
                             {/* Your card component goes here */}
-                            <Route exact path="/"><Home /></Route>
+                            <Route exact path="/"><Home user={ user?user:-1 } /></Route>
                             <Route path="/character"><Character userId={userId} /></Route>
                             <Route path="/missions"><Missions userId={userId} /></Route>
                             <Route path="/duels"><Duels player={characterSelector[0]} /></Route>

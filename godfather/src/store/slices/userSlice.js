@@ -25,6 +25,19 @@ export const signUpUser = createAsyncThunk(
     }
 )
 
+export const logOutUser = createAsyncThunk(
+    'user/logOutUser',
+    async (user) => {
+        const res = await httpPost(
+            '/api/users/logout', 
+            { token: user.token }, 
+            { headers: {Authorization: 'Bearer ' + user.token} }
+        )
+        alert(res)
+        return user.userId
+    }
+)
+
 const userSlice = createSlice({
     name: 'user',
     initialState: userAdapter.getInitialState({
@@ -45,6 +58,18 @@ const userSlice = createSlice({
             state.loading = true
         },
         [fetchUserLogin.rejected]: (state) => {
+            state.loading = false
+        },
+        [logOutUser.fulfilled]: (state, action) => {
+            console.log(action.payload)
+            userAdapter.removeOne(state, action.payload)
+            state.loading = false
+            state.logged = false
+        },
+        [logOutUser.pending]: (state) => {
+            state.loading = true
+        },
+        [logOutUser.rejected]: (state) => {
             state.loading = false
         }
     }

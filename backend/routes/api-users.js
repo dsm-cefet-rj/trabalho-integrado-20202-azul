@@ -31,17 +31,9 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
     res.json({ token: token, username: req.user.username})
 })
 
-router.get('/logout', (req, res) => {
-    if (req.session) {
-        req.session.destroy();
-        res.clearCookie('session-id');
-        res.redirect('/');
-    }
-    else {
-        var err = new Error('You are not logged in!');
-        err.status = 403;
-        next(err);
-    }
+router.post('/logout', authenticate.verifyUser, (req, res) => {
+    // Todo: Black list the token in the req
+    res.json("You've successfully logged out")
 })
 
 module.exports = router

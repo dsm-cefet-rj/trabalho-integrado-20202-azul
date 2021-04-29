@@ -1,7 +1,8 @@
 import './Home.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import LoginModal from './modals/loginModal'
 import SignUpModal from './modals/signUpModal'
+import { logOutUser } from '../../store/slices/userSlice'
 
 /**
  * @module home-page/home
@@ -14,12 +15,13 @@ import SignUpModal from './modals/signUpModal'
  *
  */
 
-function Home() {
+function Home(props) {
     const userLogged = useSelector(state => state.user.logged)
+    const dispatch = useDispatch()
 
-    // const verifyUser = () => {
-    //     if (userLogged) alert('You are already logged in')
-    // }
+    const logOutButton = () => {
+        if (props.user !== -1) dispatch(logOutUser(props.user))
+    }
 
     return (
         <>
@@ -31,7 +33,7 @@ function Home() {
                 <div id="sign-up-in">
                     {userLogged?
                     <ul className="text-center">
-                        <button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#" key={0} >
+                        <button className="list-group-item list-group-item-action" onClick={logOutButton} key={0} >
                             Log Out
                         </button>
                     </ul>
