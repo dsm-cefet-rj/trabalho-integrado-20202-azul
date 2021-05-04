@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "swagger-autogen": "node swagger.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -14,10 +15,14 @@
     "morgan": "~1.9.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "passport-local-mongoose": "^6.1.0"
+    "passport-local-mongoose": "^6.1.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "main": "app.js",
   "author": "dd2t",
   "license": "MIT",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "swagger-autogen": "^2.8.1"
+  }
 }
