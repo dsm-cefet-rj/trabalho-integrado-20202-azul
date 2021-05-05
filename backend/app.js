@@ -15,6 +15,8 @@ const config = require('./persistent/config')
 var passport = require('passport')
 var authenticate = require('./authenticate')
 
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
 
 // Initializing
 var app = express()
@@ -36,6 +38,9 @@ app.use('/api/users', userRouter)
 app.use('/api/character', charRouter)
 app.use('/api/missions', missionRouter)
 app.use('/api/gold', goldRouter)
+
+//Swagger
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // 404 handler
 app.use(function (req, res, next) {
