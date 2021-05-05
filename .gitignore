@@ -12,6 +12,12 @@ godfather/public/old-structure
 #deploy
 heroku.sh
 
+#cypress
+godfather/cypress/fixtures/
+godfather/cypress/integration/examples
+godfather/cypress/plugins
+godfather/cypress/support
+
 # production
 build/
 backend/public
