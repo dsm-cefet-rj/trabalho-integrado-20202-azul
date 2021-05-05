@@ -52,7 +52,7 @@ function Missions() {
         let array = []
         missionArray.forEach(element => {
             array.push(
-                <button className="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#mission-details-modal" key={element._id} onClick={fillModalMission(element)}>
+                <button className="list-group-item list-group-item-action mission-list-button" data-bs-toggle="modal" data-bs-target="#mission-details-modal" key={element._id} onClick={fillModalMission(element)}>
                     {element.name}
                 </button>
             )
@@ -152,8 +152,8 @@ function Missions() {
                         </div>
                         <div className="modal-footer">
                             <p>Time: {modalMission.time}:00</p>
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-success">Combat</button>
+                            <button type="button" className="btn btn-secondary modal-close-button" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-success modal-combat-button">Combat</button>
                         </div>
                     </div>
                 </div>

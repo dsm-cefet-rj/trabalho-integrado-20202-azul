@@ -22,16 +22,16 @@ function LoginModal() {
         <form onSubmit={handleSubmit(loginSubmitHandler)}>
             <div className="modal-body">
                 <p>Username: </p>
-                <input className="form-control" {...register("username")} />
+                <input className="form-control login-username-field" {...register("username")} />
                 <span>{errors.username?.message}</span>
                 <p>Password: </p>
-                <input className="form-control" type="password" {...register("password")} />
+                <input className="form-control login-password-field" type="password" {...register("password")} />
                 <span>{errors.password?.message}</span>
             </div>
 
             <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" className="btn btn-success" >Login</button>
+                <button type="button" className="btn btn-secondary loginmodal-close-button" data-bs-dismiss="modal">Close</button>
+                <button type="submit" className="btn btn-success loginmodal-login-button" >Login</button>
             </div>
         </form>
     )
