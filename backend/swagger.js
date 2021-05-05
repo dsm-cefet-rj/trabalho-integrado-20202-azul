@@ -10,7 +10,66 @@ const doc = {
     basePath: "/",
     schemes: ['http', 'https'],
     consumes: ['application/json'],
-    produces: ['application/json']
+    produces: ['application/json'],
+    definitions: {
+        Character: {
+            _id: 1,
+            name: "Josefino",
+            picture: "https://dd2t.github.io/psw/images/character/character-images/mafia-luffy.jpg",
+            wins: 0,
+            losses: 0,
+			status: {
+                pointsAvailable: 1000,
+                atk: 25,
+                res: 55,
+                lck: 42,
+                rsl: 26
+			},
+            leveling: {
+                xp: 0,
+                level: 0,
+                upXp: 0 
+            },
+			activeMission: {
+                missionId: 0,
+                missionStartTime: ""
+			},
+            rankId: 1
+        },
+        GoldOffers: [
+            {
+                _id: 1,
+                picture: "https://dd2t.github.io/psw/images/gold-shop/description-images/1200g-300px.jpg",
+                description: "Don's heritage",
+                link: "www.google.com",
+                value: 1200,
+                price: 200,
+                discount: 20
+            }
+        ],
+        Missions: [ 
+            {
+				_id: 1,
+				name: "Fender Ketchup",
+				description: "Follow the damn train CJ",
+				sender: "Big Smoke",
+				xp: 50,
+				time: 1
+            }
+        ]
+    },
+    components: {
+        securitySchemes: {
+            bearerAuth: {
+                type: "http",
+                scheme: "bearer",
+                bearerFormat: "JWT"
+            }
+        }
+    },
+    security:{
+        bearerAuth: []
+    }
 }
 
 const outputFile = './swagger_output.json'

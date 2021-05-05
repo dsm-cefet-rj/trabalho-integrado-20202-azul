@@ -6,13 +6,30 @@ const authenticate = require('../authenticate')
 
 /* GET */
 router.get('/', authenticate.verifyUser, function(req, res, next) {
+    /* 	#swagger.tags = ['Character']
+        #swagger.description = 'Busca personagem no mongodb'
+    */
+
     Character.findOne({ _id: 0 }, (err, character) => {
         res.json({character: character})
     })
+
+    /* #swagger.responses[200] = { 
+            schema: { $ref: "#/definitions/Character" },
+            description: 'Personagem encontrado.' 
+        }
+        #swagger.responses[401] = { 
+            description: 'Erro na autenticação.' 
+        } 
+    */
 });
 
 /* UPDATE */
 router.post('/increment-status', authenticate.verifyUser, async function(req, res) {
+    /* 	#swagger.tags = ['Character']
+        #swagger.description = 'Incrementa status do personagem'
+    */
+
     let char = await Character.findOne({ _id: 0 })
 
     if (char.status.pointsAvailable < 1) {

@@ -39,7 +39,7 @@ app.use('/api/character', charRouter)
 app.use('/api/missions', missionRouter)
 app.use('/api/gold', goldRouter)
 
-//Swagger
+// Swagger
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // 404 handler

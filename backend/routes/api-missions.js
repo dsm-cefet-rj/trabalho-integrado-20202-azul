@@ -5,6 +5,9 @@ const authenticate = require('../authenticate')
 
 /* GET users listing. */
 router.route('/').get( authenticate.verifyUser, async (req, res, next) => {
+    /* 	#swagger.tags = ['Missions']
+        #swagger.description = 'Busca missões no mongodb'
+    */
 
     missions = await Mission.find({}).limit(3)
     // Continuar a parte de active mission
@@ -14,7 +17,15 @@ router.route('/').get( authenticate.verifyUser, async (req, res, next) => {
     // Trabalhar o formulário de login para a forma do vídeo
     // , activeMission: 
     res.json({ missionList: missions})
-    
+
+    /* #swagger.responses[200] = { 
+            schema: { $ref: "#/definitions/Missions" },
+            description: 'Missões encontradas.' 
+        }
+        #swagger.responses[401] = { 
+            description: 'Erro na autenticação.' 
+        } 
+    */
 });
 
 module.exports = router;

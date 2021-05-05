@@ -5,6 +5,9 @@ const passport = require('passport')
 const authenticate = require('../authenticate')
 
 router.post('/signup', (req, res, next) => {
+    /* 	#swagger.tags = ['Users']
+        #swagger.description = 'Registra usuário'*/
+
     User.register(new User({ username: req.body.username }),
         req.body.password, (err, user) => {
             if (err) {
@@ -24,7 +27,9 @@ router.post('/signup', (req, res, next) => {
 })
 
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
-
+    /* 	#swagger.tags = ['Users']
+        #swagger.description = 'Loga usuário' */
+    
     const token = authenticate.getToken({ _id: req.user._id })
     res.statusCode = 200
     res.setHeader('Content-Type', 'application/json')
@@ -32,6 +37,9 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
 })
 
 router.post('/logout', authenticate.verifyUser, (req, res) => {
+    /* 	#swagger.tags = ['Users']
+        #swagger.description = 'Desloga usuário' */
+
     // Todo: Black list the token in the req
     res.json("You've successfully logged out")
 })
