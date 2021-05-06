@@ -11,6 +11,15 @@ const doc = {
     schemes: ['http', 'https'],
     consumes: ['application/json'],
     produces: ['application/json'],
+    securityDefinitions: {
+        bearerAuth: {
+          type: 'apiKey',
+          name: 'Authorization',
+          scheme: 'bearer',
+          in: 'header',
+        },
+    },
+    security: [{bearerAuth: []}],
     definitions: {
         Character: {
             _id: 1,
@@ -56,19 +65,11 @@ const doc = {
 				xp: 50,
 				time: 1
             }
-        ]
-    },
-    components: {
-        securitySchemes: {
-            bearerAuth: {
-                type: "http",
-                scheme: "bearer",
-                bearerFormat: "JWT"
-            }
+        ],
+        Login: {
+            username: "any",
+            password: "any"
         }
-    },
-    security:{
-        bearerAuth: []
     }
 }
 

@@ -28,7 +28,13 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
     /* 	#swagger.tags = ['Users']
-        #swagger.description = 'Loga usuário' */
+        #swagger.description = 'Loga usuário' 
+         #swagger.parameters['obj'] = {
+            in: 'body',
+            type: "object",
+            schema: {$ref: "#/definitions/Login"}
+        }
+    */
     
     const token = authenticate.getToken({ _id: req.user._id })
     res.statusCode = 200
