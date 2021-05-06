@@ -5,14 +5,18 @@ const authenticate = require('../authenticate')
 
 
 /* GET */
-router.get('/', authenticate.verifyUser, function(req, res, next) {
+router.get('/', authenticate.verifyUser, async function(req, res, next) {
     /* 	#swagger.tags = ['Character']
         #swagger.description = 'Busca personagem no mongodb'
     */
 
-    Character.findOne({ _id: 0 }, (err, character) => {
-        res.json({character: character})
-    })
+    // Character.findOne({ _id: 0 }).populate('missionId').exec((err, character) => {
+    //     if (err) return handleError(err)
+    //     console.log(character.activeMission)
+    //     res.json({character: character})
+    // })
+    let char = await (await Character.findOne({ _id: 0 }).populate('activeMission.missionId')).execPopulate()
+    res.json({character: char})
 
     /* #swagger.responses[200] = { 
             schema: { $ref: "#/definitions/Character" },

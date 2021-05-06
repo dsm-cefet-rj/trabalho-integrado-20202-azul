@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react'
 import { userSelectors } from '../../store/slices/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchMissions, missionSelectors } from '../../store/slices/missionSlice'
+import { 
+	characterSelectors 
+} from '../../store/slices/characterSlice'
 
 /**
  * @module missions/missions
@@ -16,8 +19,13 @@ import { fetchMissions, missionSelectors } from '../../store/slices/missionSlice
 
 function Missions() {
 
+    // 1 minuto em milisegundos
+    const SECOND = 1000
+
     const userIds = useSelector(userSelectors.selectIds)
     const user = useSelector((state) => userSelectors.selectById(state, userIds))
+
+    const characterArray = useSelector(characterSelectors.selectAll)
 
     const [missionArray, setMissionArray] = useState([])
     let modalMission = {}
@@ -42,6 +50,60 @@ function Missions() {
         // Time formart
         const zeroPad = (num, places) => String(num).padStart(places, '0')
         modalMission.time = zeroPad(modalMission.time, 2)
+    }
+
+    const fillActiveMission = () => {
+        if (!user) {
+            return
+        }
+
+        const mission = characterArray[0].activeMission.missionId
+        const startTime = characterArray[0].activeMission.missionStartTime
+        console.log(
+            (Date.now() - startTime) / SECOND,
+            ((Date.now() - startTime) / SECOND), mission.time * 60 * SECOND
+        )
+
+        return (
+        <>
+            <hr />
+            <h3 className="fw-bold">Active Mission</h3>
+            <div className="active-mission-box">
+                <div id="mission-header">
+                    <h4 id="ac-mission-name" className="fw-bold">{mission.name}</h4>
+                </div>
+
+                <div id="ac-mission-description">
+                    <p>{mission.description}</p>
+                    <p id="ac-mission-sender" className="text-end">{mission.sender}</p>
+                </div>
+
+                <div id="ac-mission-rewards" className="row">
+                    <div className="col col-md-8 col-lg-8">
+                        <p>Rewards: </p>
+                    </div>
+                    <div className="col" id="xp-reward">
+                        <strong><span>{mission.xp}</span></strong> XP
+                    </div>
+                </div>
+
+                <div id="ac-actions">
+                    <div id="ac-timer">
+                        Time remaining: <strong><span>07:58</span></strong>
+                    </div>
+                    <div id="ac-buttons" className="d-flex justify-content-end">
+                        <button id="cancel-button" className="status-button btn btn-secondary">
+                            Cancelar
+                        </button>
+                        <button id="complete-now-button" className="status-button btn btn-success">
+                            Completar Agora <br />
+                            <i className="fas fa-gem"></i>
+                            <span id="mission-skip-price"> 100</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </>)
     }
 
     const missionList = () => {
@@ -84,13 +146,14 @@ function Missions() {
                         </ul>
                     </div>
                 </div>
-                <hr />
 
 
                 {/* <!-- Active Mission --> */}
-                <h3 className="fw-bold">Active Mission</h3>
+                {/* <h3 className="fw-bold">Active Mission</h3>
 
-                <div className="active-mission-box">
+                <div className="active-mission-box"> */}
+                    {fillActiveMission()}
+                    {/* 
                     <div id="mission-header">
                         <h4 id="ac-mission-name" className="fw-bold">Lorem Ipsum</h4>
                     </div>
@@ -121,8 +184,9 @@ function Missions() {
                                 <span id="mission-skip-price"> 100</span>
                             </button>
                         </div>
-                    </div>
-                </div>
+                    </div> 
+                    */}
+                {/* </div> */}
             </div>
 
             {/* Accepting mission modal */}

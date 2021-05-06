@@ -113,12 +113,7 @@
           "401": {
             "description": "Erro na autenticação."
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/api/character/increment-status": {

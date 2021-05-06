@@ -65,7 +65,7 @@ const characterSchema = new Schema({
             required: false
         },
         missionStartTime: {
-            type: Date,
+            type: Number,
             required: false
         }
     },

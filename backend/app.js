@@ -88,7 +88,7 @@ db.once('open', function() {
         
                 activeMission: {
                     missionId: 0,
-                    missionStartTime: ''
+                    missionStartTime:  Date.now()
                 },
         
                 rankId: 0
