@@ -60,6 +60,11 @@ router.post('/increment-status', authenticate.verifyUser, async function(req, re
     }
 
     res.json({ status: char.status })
+    /* #swagger.responses[200] = { 
+            schema: { $ref: "#/definitions/IncrementStatus" },
+            description: 'Status incrementado.' 
+        }
+    */
 });
 
 module.exports = router;

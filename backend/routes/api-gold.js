@@ -15,10 +15,7 @@ router.get('/', function(req, res, next) {
     /* #swagger.responses[200] = { 
             schema: { $ref: "#/definitions/GoldOffers" },
             description: 'Ofertas encontradas.' 
-        } 
-        #swagger.responses[401] = { 
-            description: 'Erro na autenticação.' 
-        } 
+        }
     */
 });
 

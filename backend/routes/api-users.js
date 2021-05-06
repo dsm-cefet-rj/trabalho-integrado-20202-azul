@@ -24,12 +24,21 @@ router.post('/signup', (req, res, next) => {
             }
         }
     )
+    /* #swagger.responses[200] = { 
+            schema: { $ref: "#/definitions/SignUp" },
+            description: 'Registrado com sucesso.' 
+        }
+        #swagger.responses[500] = { 
+            schema: { $ref: "#/definitions/SignUpErro" },
+            description: 'O usuário já está cadastrado.' 
+        }
+    */
 })
 
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
     /* 	#swagger.tags = ['Users']
         #swagger.description = 'Loga usuário' 
-         #swagger.parameters['obj'] = {
+        #swagger.parameters['obj'] = {
             in: 'body',
             type: "object",
             schema: {$ref: "#/definitions/Login"}
@@ -40,14 +49,32 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
     res.statusCode = 200
     res.setHeader('Content-Type', 'application/json')
     res.json({ token: token, username: req.user.username})
+    /* #swagger.responses[200] = { 
+            schema: { $ref: "#/definitions/LoginResposta" },
+            description: 'Logado com sucesso.' 
+        }
+        #swagger.responses[401] = { 
+            description: 'Erro na autenticação.' 
+        } 
+    */
 })
 
 router.post('/logout', authenticate.verifyUser, (req, res) => {
     /* 	#swagger.tags = ['Users']
-        #swagger.description = 'Desloga usuário' */
+        #swagger.description = 'Desloga usuário'
+        #swagger.parameters['obj'] = {
+            in: 'body',
+            type: "object",
+            schema: {$ref: "#/definitions/Logout"} 
+        }
+    */
 
     // Todo: Black list the token in the req
     res.json("You've successfully logged out")
+    /*  #swagger.responses[200] = {
+            description: 'Deslogado com sucesso.' 
+        }
+    */
 })
 
 module.exports = router

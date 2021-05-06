@@ -19,56 +19,103 @@ const doc = {
           in: 'header',
         },
     },
-    security: [{bearerAuth: []}],
+    security: [
+        {
+            bearerAuth: []
+        }
+    ],
     definitions: {
         Character: {
-            _id: 1,
-            name: "Josefino",
-            picture: "https://dd2t.github.io/psw/images/character/character-images/mafia-luffy.jpg",
-            wins: 0,
-            losses: 0,
-			status: {
-                pointsAvailable: 1000,
-                atk: 25,
-                res: 55,
-                lck: 42,
-                rsl: 26
-			},
-            leveling: {
-                xp: 0,
-                level: 0,
-                upXp: 0 
-            },
-			activeMission: {
-                missionId: 0,
-                missionStartTime: ""
-			},
-            rankId: 1
+            character: {
+                status: {
+                    pointsAvailable: 1000,
+                    atk: 21,
+                    res: 42,
+                    lck: 999,
+                    rsl: 23
+                },
+                leveling: {
+                    xp: 7,
+                    level: 1,
+                    upXp: 10
+                },
+                activeMission: {
+                    missionId: {
+                        _id: 0,
+                        name: "Fender Ketchup",
+                        description: "Follow the damn train CJ",
+                        sender: "Big Smoke",
+                        xp: 50,
+                        time: 1,
+                        __v: 0
+                    },
+                    missionStartTime: 1620329842319
+                },
+                _id: 0,
+                picture: "https://dd2t.github.io/psw/images/character/character-images/mafia-luffy.jpg",
+                name: "Backend working",
+                wins: 42,
+                losses: 23,
+                rankId: 0,
+                __v: 0
+            }
         },
-        GoldOffers: [
-            {
-                _id: 1,
-                picture: "https://dd2t.github.io/psw/images/gold-shop/description-images/1200g-300px.jpg",
-                description: "Don's heritage",
-                link: "www.google.com",
-                value: 1200,
-                price: 200,
-                discount: 20
+        GoldOffers: {
+            offerArray: [
+                {
+                    _id: 0,
+                    picture: "https://dd2t.github.io/psw/images/gold-shop/description-images/1200g-300px.jpg",
+                    description: "Don's heritage",
+                    link: "www.google.com",
+                    value: 1200,
+                    price: 200,
+                    discount: 20,
+                    __v: 0
+                }
+            ]
+        },
+        Missions: {
+            missionList: [
+                {
+                    _id: 0,
+                    name: "Fender Ketchup",
+                    description: "Follow the damn train CJ",
+                    sender: "Big Smoke",
+                    xp: 50,
+                    time: 1,
+                    __v: 0
+                }
+            ]
+        },
+        SignUp: {
+            success: true,
+            status: "Registration Successful!"
+        },
+        SignUpErro: {
+            err: {
+                name: "UserExistsError",
+                message: "A user with the given username is already registered"
             }
-        ],
-        Missions: [ 
-            {
-				_id: 1,
-				name: "Fender Ketchup",
-				description: "Follow the damn train CJ",
-				sender: "Big Smoke",
-				xp: 50,
-				time: 1
-            }
-        ],
+        },
         Login: {
             username: "any",
             password: "any"
+        },
+        LoginResposta: {
+            token: "<Bearer Token>",
+            username: "any"
+        },
+        IncrementStatus: {
+            status: {
+                pointsAvailable: 999,
+                atk: 22,
+                res: 42,
+                lck: 999,
+                rsl: 23
+            }
+        },
+        Logout: {
+            token: "<Bearer Token>"
         }
     }
 }

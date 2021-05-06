@@ -27,14 +27,6 @@
     "application/json"
   ],
   "paths": {
-    "/": {
-      "get": {
-        "tags": [],
-        "description": "Busca página inicial",
-        "parameters": [],
-        "responses": {}
-      }
-    },
     "/api/users/signup": {
       "post": {
         "tags": [
@@ -61,7 +53,20 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/SignUp"
+            },
+            "description": "Registrado com sucesso."
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/SignUpErro"
+            },
+            "description": "O usuário já está cadastrado."
+          }
+        }
       }
     },
     "/api/users/login": {
@@ -83,7 +88,17 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/LoginResposta"
+            },
+            "description": "Logado com sucesso."
+          },
+          "401": {
+            "description": "Erro na autenticação."
+          }
+        }
       }
     },
     "/api/users/logout": {
@@ -92,8 +107,21 @@
           "Users"
         ],
         "description": "Desloga usuário",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/Logout"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deslogado com sucesso."
+          }
+        }
       }
     },
     "/api/character/": {
@@ -136,7 +164,14 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/IncrementStatus"
+            },
+            "description": "Status incrementado."
+          }
+        }
       }
     },
     "/api/missions/": {
@@ -172,9 +207,6 @@
               "$ref": "#/definitions/GoldOffers"
             },
             "description": "Ofertas encontradas."
-          },
-          "401": {
-            "description": "Erro na autenticação."
           }
         }
       }
@@ -184,151 +216,238 @@
     "Character": {
       "type": "object",
       "properties": {
-        "_id": {
-          "type": "number",
-          "example": 1
-        },
-        "name": {
-          "type": "string",
-          "example": "Josefino"
-        },
-        "picture": {
-          "type": "string",
-          "example": "https://dd2t.github.io/psw/images/character/character-images/mafia-luffy.jpg"
-        },
-        "wins": {
-          "type": "number",
-          "example": 0
-        },
-        "losses": {
-          "type": "number",
-          "example": 0
-        },
-        "status": {
+        "character": {
           "type": "object",
           "properties": {
-            "pointsAvailable": {
-              "type": "number",
-              "example": 1000
+            "status": {
+              "type": "object",
+              "properties": {
+                "pointsAvailable": {
+                  "type": "number",
+                  "example": 1000
+                },
+                "atk": {
+                  "type": "number",
+                  "example": 21
+                },
+                "res": {
+                  "type": "number",
+                  "example": 42
+                },
+                "lck": {
+                  "type": "number",
+                  "example": 999
+                },
+                "rsl": {
+                  "type": "number",
+                  "example": 23
+                }
+              }
             },
-            "atk": {
-              "type": "number",
-              "example": 25
+            "leveling": {
+              "type": "object",
+              "properties": {
+                "xp": {
+                  "type": "number",
+                  "example": 7
+                },
+                "level": {
+                  "type": "number",
+                  "example": 1
+                },
+                "upXp": {
+                  "type": "number",
+                  "example": 10
+                }
+              }
             },
-            "res": {
-              "type": "number",
-              "example": 55
+            "activeMission": {
+              "type": "object",
+              "properties": {
+                "missionId": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "Fender Ketchup"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Follow the damn train CJ"
+                    },
+                    "sender": {
+                      "type": "string",
+                      "example": "Big Smoke"
+                    },
+                    "xp": {
+                      "type": "number",
+                      "example": 50
+                    },
+                    "time": {
+                      "type": "number",
+                      "example": 1
+                    },
+                    "__v": {
+                      "type": "number",
+                      "example": 0
+                    }
+                  }
+                },
+                "missionStartTime": {
+                  "type": "number",
+                  "example": 1620329842319
+                }
+              }
             },
-            "lck": {
+            "_id": {
+              "type": "number",
+              "example": 0
+            },
+            "picture": {
+              "type": "string",
+              "example": "https://dd2t.github.io/psw/images/character/character-images/mafia-luffy.jpg"
+            },
+            "name": {
+              "type": "string",
+              "example": "Backend working"
+            },
+            "wins": {
               "type": "number",
               "example": 42
             },
-            "rsl": {
+            "losses": {
               "type": "number",
-              "example": 26
-            }
-          }
-        },
-        "leveling": {
-          "type": "object",
-          "properties": {
-            "xp": {
+              "example": 23
+            },
+            "rankId": {
               "type": "number",
               "example": 0
             },
-            "level": {
-              "type": "number",
-              "example": 0
-            },
-            "upXp": {
+            "__v": {
               "type": "number",
               "example": 0
             }
           }
-        },
-        "activeMission": {
-          "type": "object",
-          "properties": {
-            "missionId": {
-              "type": "number",
-              "example": 0
-            },
-            "missionStartTime": {
-              "type": "string",
-              "example": ""
-            }
-          }
-        },
-        "rankId": {
-          "type": "number",
-          "example": 1
         }
       }
     },
     "GoldOffers": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "number",
-            "example": 1
-          },
-          "picture": {
-            "type": "string",
-            "example": "https://dd2t.github.io/psw/images/gold-shop/description-images/1200g-300px.jpg"
-          },
-          "description": {
-            "type": "string",
-            "example": "Don's heritage"
-          },
-          "link": {
-            "type": "string",
-            "example": "www.google.com"
-          },
-          "value": {
-            "type": "number",
-            "example": 1200
-          },
-          "price": {
-            "type": "number",
-            "example": 200
-          },
-          "discount": {
-            "type": "number",
-            "example": 20
+      "type": "object",
+      "properties": {
+        "offerArray": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "number",
+                "example": 0
+              },
+              "picture": {
+                "type": "string",
+                "example": "https://dd2t.github.io/psw/images/gold-shop/description-images/1200g-300px.jpg"
+              },
+              "description": {
+                "type": "string",
+                "example": "Don's heritage"
+              },
+              "link": {
+                "type": "string",
+                "example": "www.google.com"
+              },
+              "value": {
+                "type": "number",
+                "example": 1200
+              },
+              "price": {
+                "type": "number",
+                "example": 200
+              },
+              "discount": {
+                "type": "number",
+                "example": 20
+              },
+              "__v": {
+                "type": "number",
+                "example": 0
+              }
+            }
           }
         }
       }
     },
     "Missions": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "number",
-            "example": 1
-          },
-          "name": {
-            "type": "string",
-            "example": "Fender Ketchup"
-          },
-          "description": {
-            "type": "string",
-            "example": "Follow the damn train CJ"
-          },
-          "sender": {
-            "type": "string",
-            "example": "Big Smoke"
-          },
-          "xp": {
-            "type": "number",
-            "example": 50
-          },
-          "time": {
-            "type": "number",
-            "example": 1
+      "type": "object",
+      "properties": {
+        "missionList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "number",
+                "example": 0
+              },
+              "name": {
+                "type": "string",
+                "example": "Fender Ketchup"
+              },
+              "description": {
+                "type": "string",
+                "example": "Follow the damn train CJ"
+              },
+              "sender": {
+                "type": "string",
+                "example": "Big Smoke"
+              },
+              "xp": {
+                "type": "number",
+                "example": 50
+              },
+              "time": {
+                "type": "number",
+                "example": 1
+              },
+              "__v": {
+                "type": "number",
+                "example": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "SignUp": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "example": true
+        },
+        "status": {
+          "type": "string",
+          "example": "Registration Successful!"
+        }
+      }
+    },
+    "SignUpErro": {
+      "type": "object",
+      "properties": {
+        "err": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "UserExistsError"
+            },
+            "message": {
+              "type": "string",
+              "example": "A user with the given username is already registered"
+            }
           }
         }
       }
@@ -343,6 +462,58 @@
         "password": {
           "type": "string",
           "example": "any"
+        }
+      }
+    },
+    "LoginResposta": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "example": "<Bearer Token>"
+        },
+        "username": {
+          "type": "string",
+          "example": "any"
+        }
+      }
+    },
+    "IncrementStatus": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "object",
+          "properties": {
+            "pointsAvailable": {
+              "type": "number",
+              "example": 999
+            },
+            "atk": {
+              "type": "number",
+              "example": 22
+            },
+            "res": {
+              "type": "number",
+              "example": 42
+            },
+            "lck": {
+              "type": "number",
+              "example": 999
+            },
+            "rsl": {
+              "type": "number",
+              "example": 23
+            }
+          }
+        }
+      }
+    },
+    "Logout": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "example": "<Bearer Token>"
         }
       }
     }
