@@ -18,6 +18,34 @@ export const fetchCharacter = createAsyncThunk(
     }
 )
 
+export const activateMission = createAsyncThunk(
+    'character/activateMission',
+    async ({ userId, characterId, missionId }, { getState }) => {
+        const jwt = getState().user.entities[userId].token
+        const res = await httpPost(
+            '/api/character/activate-mission',
+            { characterId: characterId, missionId: missionId },
+            { headers: {Authorization: 'Bearer ' + jwt} }
+        )
+        return res.character
+    }
+)
+
+export const completeMission = createAsyncThunk(
+    'character/completeMission',
+    async ({ userId, characterId }, { getState }) => {
+        const jwt = getState().user.entities[userId].token
+        const res = await httpPost(
+            '/api/character/complete-mission',
+            { characterId: characterId },
+            { headers: {Authorization: 'Bearer ' + jwt} }
+        )
+
+        return res.character
+    }
+)
+
+
 export const incrementStatus = createAsyncThunk(
     'character/incrementStatus',
     async ({ userID, statusToIncrement}, { getState }) => {
@@ -48,7 +76,13 @@ const characterSlice = createSlice({
         },
         [incrementStatus.fulfilled]: (state, action) => {
             characterAdapter.upsertOne(state, action.payload)
-        }
+        },
+        [completeMission.fulfilled]: (state, action) => {
+            characterAdapter.upsertOne(state, action.payload)
+        },
+        [activateMission.fulfilled]: (state, action) => {
+            characterAdapter.upsertOne(state, action.payload)
+        },
     }
 })
 

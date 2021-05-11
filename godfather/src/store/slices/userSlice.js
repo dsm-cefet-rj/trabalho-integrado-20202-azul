@@ -61,7 +61,6 @@ const userSlice = createSlice({
             state.loading = false
         },
         [logOutUser.fulfilled]: (state, action) => {
-            console.log(action.payload)
             userAdapter.removeOne(state, action.payload)
             state.loading = false
             state.logged = false

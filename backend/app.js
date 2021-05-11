@@ -102,7 +102,7 @@ db.once('open', function() {
     Mission.findOne({}, (err, mission) => {
         if (!mission) {
             console.log('Creating a test mission in database...')
-            const quest = new Mission({
+            const fender = new Mission({
                 _id: 0,
                 name: 'Fender Ketchup',
                 description: 'Follow the damn train CJ',
@@ -110,7 +110,19 @@ db.once('open', function() {
                 xp: 50,
                 time: 1
             })
-            quest.save((error, quest) => {
+            fender.save((error, quest) => {
+                if (error) return console.log(error)
+            })
+
+            const giorno = new Mission({
+                _id: 1,
+                name: 'Golden Wind',
+                description: 'Giorno Giovanna has a dream, he wants to become the mafia boss and stop the selling drugs in Italy. Go help him',
+                sender: 'Bruno Bucciarati',
+                xp: 50,
+                time: 2
+            })
+            giorno.save((error, quest) => {
                 if (error) return console.log(error)
             })
         }

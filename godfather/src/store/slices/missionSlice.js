@@ -23,7 +23,7 @@ const missionSlice = createSlice({
     extraReducers: {
         [fetchMissions.fulfilled]: (state, action) => {
             missionAdapter.setAll(state, action.payload.missionList)
-        }
+        },
     }
 })
 

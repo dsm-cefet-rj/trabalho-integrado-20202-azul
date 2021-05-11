@@ -3,9 +3,11 @@ import { useState, useEffect } from 'react'
 import { userSelectors } from '../../store/slices/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchMissions, missionSelectors } from '../../store/slices/missionSlice'
+import { activateMission, completeMission } from '../../store/slices/characterSlice'
 import { 
 	characterSelectors 
 } from '../../store/slices/characterSlice'
+import Timer from 'react-compound-timer'
 
 /**
  * @module missions/missions
@@ -28,7 +30,7 @@ function Missions() {
     const characterArray = useSelector(characterSelectors.selectAll)
 
     const [missionArray, setMissionArray] = useState([])
-    let modalMission = {}
+    const [modalMission, setModalContent] = useState(0)
 
     const dispatch = useDispatch()
     const missionsFromSelector = useSelector(missionSelectors.selectAll)
@@ -44,25 +46,22 @@ function Missions() {
         setMissionArray(missionsFromSelector)
     }
 
-    const fillModalMission = (element) => {
-        modalMission = { ...element }
 
+    const fillModalMission = (element) => {
         // Time formart
         const zeroPad = (num, places) => String(num).padStart(places, '0')
-        modalMission.time = zeroPad(modalMission.time, 2)
+        setModalContent({...element, time: zeroPad(element.time, 2) })
     }
 
     const fillActiveMission = () => {
-        if (!user) {
+        if (!user || !characterArray[0].activeMission.missionStartTime) {
             return
         }
-
         const mission = characterArray[0].activeMission.missionId
         const startTime = characterArray[0].activeMission.missionStartTime
-        console.log(
-            (Date.now() - startTime) / SECOND,
-            ((Date.now() - startTime) / SECOND), mission.time * 60 * SECOND
-        )
+
+        let timeLeft = ((60 * SECOND * mission.time) + startTime) - Date.now()
+        if (timeLeft < 0) timeLeft = 0
 
         return (
         <>
@@ -89,16 +88,16 @@ function Missions() {
 
                 <div id="ac-actions">
                     <div id="ac-timer">
-                        Time remaining: <strong><span>07:58</span></strong>
+                        Time remaining: <Timer initialTime={timeLeft} direction="backward" > 
+                            <Timer.Minutes /> minutes and <Timer.Seconds /> seconds
+                        </Timer>
                     </div>
                     <div id="ac-buttons" className="d-flex justify-content-end">
                         <button id="cancel-button" className="status-button btn btn-secondary">
-                            Cancelar
+                            Cancel
                         </button>
-                        <button id="complete-now-button" className="status-button btn btn-success">
-                            Completar Agora <br />
-                            <i className="fas fa-gem"></i>
-                            <span id="mission-skip-price"> 100</span>
+                        <button id="complete-now-button" className="status-button btn btn-success" onClick={finishMission}>
+                            Finish mission
                         </button>
                     </div>
                 </div>
@@ -114,7 +113,7 @@ function Missions() {
         let array = []
         missionArray.forEach(element => {
             array.push(
-                <button className="list-group-item list-group-item-action mission-list-button" data-bs-toggle="modal" data-bs-target="#mission-details-modal" key={element._id} onClick={fillModalMission(element)}>
+                <button className="list-group-item list-group-item-action mission-list-button" data-bs-toggle="modal" data-bs-target="#mission-details-modal" key={element._id} onClick={() => fillModalMission(element)}>
                     {element.name}
                 </button>
             )
@@ -123,6 +122,31 @@ function Missions() {
         return (<div>{array}</div>)
     }
 
+    const acceptMission = () => {
+        // Verify if you are already in a mission, if there is alert error and return
+        console.log(modalMission)
+        if (characterArray[0].activeMission.missionId) return alert('You are already in a mission')
+
+        // Dispatch mission selected to backend (redux) and put it on active mission
+        dispatch(activateMission(
+            {
+                userId: user.userId,
+                characterId: characterArray[0]._id,
+                missionId: modalMission._id
+            }
+        ))
+        
+    }
+
+    const finishMission = () => {
+        const mission = characterArray[0].activeMission.missionId
+        const startTime = characterArray[0].activeMission.missionStartTime
+        const minutesSpent = ((Date.now() - startTime) / SECOND) / 60
+        
+        if (minutesSpent < mission.time) return alert('You still doing this gig')
+        
+        dispatch(completeMission({ userId: user.userId, characterId: characterArray[0]._id }))
+    }
 
     return (
         <>
@@ -193,7 +217,7 @@ function Missions() {
             {/* Modal */}
             <div className="modal fade" id="mission-details-modal" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
+                <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="modal-mission-name">{modalMission.name}</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -217,7 +241,7 @@ function Missions() {
                         <div className="modal-footer">
                             <p>Time: {modalMission.time}:00</p>
                             <button type="button" className="btn btn-secondary modal-close-button" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-success modal-combat-button">Combat</button>
+                            <button type="button" className="btn btn-success modal-combat-button" onClick={acceptMission}>Combat</button>
                         </div>
                     </div>
                 </div>
