@@ -4,6 +4,35 @@ const Character = require('../models/characters')
 const Mission = require('../models/missions')
 const authenticate = require('../authenticate')
 
+function characterLevelUp(character, reward) {
+    /* 
+        Parameters:
+            character: character object
+            reward: { xp: Number (satochis) }
+        
+        Return: Character object
+    */
+
+    let leveling = character.leveling
+    // Transforming satochis xp into real xp
+    const xp = reward.xp * (leveling.upXp / 100)
+
+    leveling.xp += xp
+
+    // Level up
+    if (leveling.xp >= leveling.upXp) {
+        leveling.xp = leveling.xp - leveling.upXp
+        leveling.level++
+        leveling.upXp = leveling.level * 10
+
+        character.status.pointsAvailable++
+    }
+
+    character.leveling = leveling
+
+    return character
+}
+
 
 /* GET */
 router.get('/', authenticate.verifyUser, async function(req, res, next) {
@@ -34,9 +63,16 @@ router.post(
         const startTime = character.activeMission.missionStartTime
         const deltaTime = ((Date.now() - startTime) / 1000) / 60
 
-        if (deltaTime < mission.time) return res.json({ completeMissionStatus: 'failed' })
+        if (deltaTime < mission.time) return res.json({ completeMissionStatus: 'Failed. The character still in this job' })
 
-        character = await Character.findOneAndUpdate({ _id: charId }, { "activeMission.missionId": null, "activeMission.missionStartTime": null } , { new: true })
+        const charUpdated = characterLevelUp(character, { xp: mission.xp })
+
+        character = await Character.findOneAndUpdate({ _id: charId }, { 
+            "activeMission.missionId": null, 
+            "activeMission.missionStartTime": null, 
+            "leveling": charUpdated.leveling, 
+            "status.pointsAvailable": charUpdated.status.pointsAvailable
+        } , { new: true })
 
         res.json({ character: character })
     }
