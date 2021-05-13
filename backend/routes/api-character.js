@@ -40,7 +40,11 @@ router.get('/', authenticate.verifyUser, async function(req, res, next) {
         #swagger.description = 'Busca personagem no mongodb'
     */
 
-    let char = await (await Character.findOne({ _id: 0 }).populate('activeMission.missionId')).execPopulate()
+    // console.log(req.user._id)
+    // Because of the authetication we always have the user data
+
+    // let char = await (await Character.findOne({ _id: 0 }).populate('activeMission.missionId')).execPopulate()
+    let char = await (await Character.findOne({ _id: req.user.character }).populate('activeMission.missionId')).execPopulate()
     res.json({character: char})
 
     /* #swagger.responses[200] = { 
@@ -58,7 +62,8 @@ router.post(
     authenticate.verifyUser,
     async (req, res) => {
         const charId = req.body.characterId
-        let character = await (await Character.findOne({ _id: charId }).populate('activeMission.missionId')).execPopulate()
+        // let character = await (await Character.findOne({ _id: charId }).populate('activeMission.missionId')).execPopulate()
+        let character = await (await Character.findOne({ _id: req.user.character }).populate('activeMission.missionId')).execPopulate()
         const mission = character.activeMission.missionId
         const startTime = character.activeMission.missionStartTime
         const deltaTime = ((Date.now() - startTime) / 1000) / 60
@@ -67,7 +72,13 @@ router.post(
 
         const charUpdated = characterLevelUp(character, { xp: mission.xp })
 
-        character = await Character.findOneAndUpdate({ _id: charId }, { 
+        // character = await Character.findOneAndUpdate({ _id: charId }, { 
+        //     "activeMission.missionId": null, 
+        //     "activeMission.missionStartTime": null, 
+        //     "leveling": charUpdated.leveling, 
+        //     "status.pointsAvailable": charUpdated.status.pointsAvailable
+        // } , { new: true })
+        character = await Character.findOneAndUpdate({ _id: req.user.character }, { 
             "activeMission.missionId": null, 
             "activeMission.missionStartTime": null, 
             "leveling": charUpdated.leveling, 
@@ -85,7 +96,7 @@ router.post(
     async (req, res) => {
         const charId = req.body.characterId
         const missionId = req.body.missionId
-        let character = await Character.findOne({ _id: charId })
+        let character = await Character.findOne({ _id: req.user.character })
         const mission = await Mission.findOne({ _id: missionId })
 
         if (character.activeMission.missionId) return res.json({ activateMissionStatus: 'Failed. This character already has a mission' })
@@ -94,7 +105,7 @@ router.post(
         character = await (
             await Character
             .findOneAndUpdate(
-                { _id: charId }, 
+                { _id: req.user.character }, 
                 { 
                     "activeMission.missionId": missionId, 
                     "activeMission.missionStartTime": Date.now() 
@@ -114,7 +125,8 @@ router.post('/increment-status', authenticate.verifyUser, async function(req, re
         #swagger.description = 'Incrementa status do personagem'
     */
 
-    let char = await Character.findOne({ _id: 0 })
+    // let char = await Character.findOne({ _id: 0 })
+    let char = await Character.findOne({ _id: req.user.character })
 
     if (char.status.pointsAvailable < 1) {
         res.json({ error: 'No points available' })
@@ -123,16 +135,16 @@ router.post('/increment-status', authenticate.verifyUser, async function(req, re
 
     switch (req.body.statusToIncrement){
         case 'atk':
-            char = await Character.findOneAndUpdate({ _id: 0 }, { $inc: {"status.atk":1, "status.pointsAvailable": -1} } , { new: true })
+            char = await Character.findOneAndUpdate({ _id: req.user.character }, { $inc: {"status.atk":1, "status.pointsAvailable": -1} } , { new: true })
             break
         case 'res':
-            char = await Character.findOneAndUpdate({ _id: 0 }, { $inc: {"status.res":1, "status.pointsAvailable": -1} } , { new: true })
+            char = await Character.findOneAndUpdate({ _id: req.user.character }, { $inc: {"status.res":1, "status.pointsAvailable": -1} } , { new: true })
             break
         case 'lck':
-            char = await Character.findOneAndUpdate({ _id: 0 }, { $inc: {"status.lck":1, "status.pointsAvailable": -1} } , { new: true })
+            char = await Character.findOneAndUpdate({ _id: req.user.character }, { $inc: {"status.lck":1, "status.pointsAvailable": -1} } , { new: true })
             break
         case 'rsl':
-            char = await Character.findOneAndUpdate({ _id: 0 }, { $inc: {"status.rsl":1, "status.pointsAvailable": -1} } , { new: true })
+            char = await Character.findOneAndUpdate({ _id: req.user.character }, { $inc: {"status.rsl":1, "status.pointsAvailable": -1} } , { new: true })
             break
         default:
             res.json({ error: 'Wrong status type' })

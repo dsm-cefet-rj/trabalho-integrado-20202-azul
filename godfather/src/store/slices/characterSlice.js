@@ -48,7 +48,7 @@ export const completeMission = createAsyncThunk(
 
 export const incrementStatus = createAsyncThunk(
     'character/incrementStatus',
-    async ({ userID, statusToIncrement}, { getState }) => {
+    async ({ userID, charID , statusToIncrement}, { getState }) => {
         const user = getState().user.entities[userID]
         const jwt = user.token
 
@@ -58,11 +58,11 @@ export const incrementStatus = createAsyncThunk(
 
         const res = await httpPost(
             '/api/character/increment-status', 
-            { statusToIncrement: statusToIncrement },
+            { statusToIncrement: statusToIncrement, charId: charID },
             { headers: {Authorization: 'Bearer ' + jwt} }
         )
 
-        return {status: res.status, _id: 0}
+        return {status: res.status, _id: charID}
     }
 )
 

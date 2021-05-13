@@ -6,6 +6,11 @@ var userSchema = new Schema({
     admin: {
         type: Boolean,
         default: false
+    },
+    character: {
+        type: Schema.Types.ObjectId,
+        ref: 'character',
+        required: true
     }
 });
 

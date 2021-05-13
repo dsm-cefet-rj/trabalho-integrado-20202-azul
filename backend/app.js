@@ -65,7 +65,7 @@ db.once('open', function() {
         if (!character) {
             console.log('Creating a test character in database...')
             const silence = new Character({
-                _id: 0,
+                // _id: 0,
                 picture: "https://dd2t.github.io/psw/images/character/character-images/mafia-luffy.jpg",
                 name: 'Backend working',
                 reputation: 1001,

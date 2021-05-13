@@ -3,12 +3,20 @@ var router = express.Router()
 const User = require('../models/users')
 const passport = require('passport')
 const authenticate = require('../authenticate')
+const Character = require('../models/characters')
 
 router.post('/signup', (req, res, next) => {
-    /* 	#swagger.tags = ['Users']
-        #swagger.description = 'Registra usuário'*/
+    /* 	
+        #swagger.tags = ['Users']
+        #swagger.description = 'Registra usuário'
+    */
+    
+    const newChar = new Character()
+    newChar.save((error, silence) => {
+        if (error) return console.log(error)
+    })
 
-    User.register(new User({ username: req.body.username }),
+    User.register(new User({ username: req.body.username, character: newChar._id }),
         req.body.password, (err, user) => {
             if (err) {
                 res.statusCode = 500
@@ -44,11 +52,10 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
             schema: {$ref: "#/definitions/Login"}
         }
     */
-    
     const token = authenticate.getToken({ _id: req.user._id })
     res.statusCode = 200
     res.setHeader('Content-Type', 'application/json')
-    res.json({ token: token, username: req.user.username})
+    res.json({ token: token, username: req.user.username, /*character: req.user.character*/})
     /* #swagger.responses[200] = { 
             schema: { $ref: "#/definitions/LoginResposta" },
             description: 'Logado com sucesso.' 

@@ -31,19 +31,19 @@ function Character() {
 
 		atk: () => {
 			if (!validStatusUpgrade()) return
-			dispatch(incrementStatus({ userID: user.userId, statusToIncrement: 'atk' }))
+			dispatch(incrementStatus({ userID: user.userId, charID: characterRedux._id, statusToIncrement: 'atk' }))
 		},
 		res: () => {
 			if (!validStatusUpgrade()) return
-			dispatch(incrementStatus({ userID: user.userId, statusToIncrement: 'res' }))
+			dispatch(incrementStatus({ userID: user.userId, charID: characterRedux._id, statusToIncrement: 'res' }))
 		},
 		lck: () => {
 			if (!validStatusUpgrade()) return
-			dispatch(incrementStatus({ userID: user.userId, statusToIncrement: 'lck' }))
+			dispatch(incrementStatus({ userID: user.userId, charID: characterRedux._id, statusToIncrement: 'lck' }))
 		},
 		rsl: () => {
 			if (!validStatusUpgrade()) return
-			dispatch(incrementStatus({ userID: user.userId, statusToIncrement: 'rsl' }))
+			dispatch(incrementStatus({ userID: user.userId, charID: characterRedux._id, statusToIncrement: 'rsl' }))
 		}
 
 	}
