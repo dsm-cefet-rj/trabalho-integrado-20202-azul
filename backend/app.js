@@ -146,7 +146,7 @@ db.once('open', function() {
         }
     })
 
-    // TODO: ranking sys
+    // TODO: ranking system
     console.log('DB ready')
 });
 
